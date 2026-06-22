@@ -1,16 +1,14 @@
 # Weekly Plan
 
-GitHub Pages version of the Weekly Plan.
+GitHub Pages final version with updated app icon.
 
-## Files
+Upload/replace all files in your repository root:
 
-- `index.html` — main page
-- `manifest.json` — Android home screen / PWA icon settings
-- `icon-192.png` — home screen icon
-- `icon-512.png` — larger app icon
-- `favicon.png` — browser icon
+- index.html
+- manifest.json
+- icon-192.png
+- icon-512.png
+- favicon.png
+- README.md
 
-## How to update GitHub Pages
-
-Upload or replace all files in this folder to your GitHub repository root.
-Then open your GitHub Pages link and add it to Android home screen again.
+Then delete the old Android home screen shortcut and add it again.
