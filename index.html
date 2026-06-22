@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Weekly Plan</title>
 
   <link rel="icon" type="image/png" href="favicon.png">
@@ -11,9 +12,6 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#111111">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-
-
 
   <style>
     * { box-sizing: border-box; }
@@ -25,18 +23,18 @@
       font-family: Arial, sans-serif;
       background: #111;
       color: #f5f5f5;
-      padding: 24px 24px 48px;
+      padding: 22px 22px 48px;
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 980px;
       margin: auto;
     }
 
     h1 {
       text-align: center;
-      font-size: 28px;
-      margin-bottom: 6px;
+      font-size: 27px;
+      margin: 0 0 6px;
     }
 
     .subtitle {
@@ -48,19 +46,19 @@
 
     .stats-bar {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .stat {
       background: #1c1c1c;
       border: 1px solid #2e2e2e;
       border-radius: 12px;
-      padding: 10px 18px;
+      padding: 10px 14px;
       text-align: center;
-      min-width: 110px;
+      min-width: 104px;
     }
 
     .stat-num {
@@ -72,26 +70,25 @@
     .stat-label {
       font-size: 11px;
       color: #888;
-      margin-top: 3px;
+      margin-top: 4px;
     }
 
-    .stat-num.green  { color: #7CFF9B; }
-    .stat-num.blue   { color: #6EC6FF; }
-    .stat-num.purple { color: #C9A7FF; }
-    .stat-num.yellow { color: #FFD166; }
+    .green { color: #7CFF9B; }
+    .blue { color: #6EC6FF; }
+    .purple { color: #C9A7FF; }
+    .yellow { color: #FFD166; }
 
     .day-nav {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(17,17,17,0.92);
+      background: rgba(17,17,17,0.94);
       backdrop-filter: blur(8px);
       display: flex;
       gap: 8px;
-      flex-wrap: wrap;
-      justify-content: center;
+      overflow-x: auto;
       padding: 10px 0 12px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       border-bottom: 1px solid #222;
     }
 
@@ -106,71 +103,61 @@
       color: #ccc;
       font-size: 13px;
       text-decoration: none;
-      transition: background 0.18s, border-color 0.18s;
+      white-space: nowrap;
     }
-
-    .day-nav a:hover { background: #2a2a2a; border-color: #555; }
-    .day-nav a.active { background: #2a3a2a; border-color: #4caf50; color: #7CFF9B; }
 
     .dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
       display: inline-block;
-      flex-shrink: 0;
     }
 
     .card {
       background: #1c1c1c;
       border: 1px solid #2e2e2e;
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 22px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.4);
       border-left: 4px solid #333;
-      transition: box-shadow 0.2s;
-      scroll-margin-top: 88px;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+      scroll-margin-top: 82px;
     }
 
-    .card:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.55); }
-
-    .card.accent-green  { border-left-color: #4caf50; }
-    .card.accent-blue   { border-left-color: #42a5f5; }
-    .card.accent-yellow { border-left-color: #FFD166; }
-    .card.accent-purple { border-left-color: #ab86f7; }
-    .card.accent-gray   { border-left-color: #666; }
+    .accent-green { border-left-color: #4caf50; }
+    .accent-blue { border-left-color: #42a5f5; }
+    .accent-yellow { border-left-color: #FFD166; }
+    .accent-purple { border-left-color: #ab86f7; }
+    .accent-gray { border-left-color: #666; }
 
     .card-header {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 14px;
       flex-wrap: wrap;
+      margin-bottom: 12px;
     }
 
-    .card h2 {
+    h2 {
       margin: 0;
       font-size: 20px;
-      color: #ffffff;
     }
 
-    .day-badge {
+    .badge {
       display: inline-block;
       padding: 3px 10px;
       border-radius: 20px;
       font-size: 11px;
       font-weight: bold;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
       text-transform: uppercase;
     }
 
-    .badge-shoulder { background: #1e3a1e; color: #7CFF9B; }
-    .badge-pull { background: #1a2e3a; color: #6EC6FF; }
-    .badge-swim { background: #0d2a3a; color: #6EC6FF; }
-    .badge-abs { background: #2e1a3a; color: #C9A7FF; }
-    .badge-full { background: #3a2a10; color: #FFD166; }
-    .badge-rest { background: #2a2a2a; color: #aaa; }
-    .badge-recovery { background: #1e2a1e; color: #7CFF9B; }
+    .badge-green { background: #1e3a1e; color: #7CFF9B; }
+    .badge-blue { background: #0d2a3a; color: #6EC6FF; }
+    .badge-purple { background: #2e1a3a; color: #C9A7FF; }
+    .badge-yellow { background: #3a2a10; color: #FFD166; }
+    .badge-gray { background: #2a2a2a; color: #aaa; }
 
     table {
       width: 100%;
@@ -179,7 +166,7 @@
     }
 
     th, td {
-      padding: 11px;
+      padding: 10px 9px;
       border-bottom: 1px solid #2a2a2a;
       text-align: left;
       font-size: 14px;
@@ -189,8 +176,8 @@
     tr:last-child td { border-bottom: none; }
 
     th {
-      color: #bbb;
       background: #222;
+      color: #bbb;
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -199,13 +186,19 @@
     th:first-child { border-radius: 8px 0 0 8px; }
     th:last-child { border-radius: 0 8px 8px 0; }
 
-    tr:hover td { background: rgba(255,255,255,0.02); }
-
-    td.time {
+    .time {
       color: #9fd3ff;
-      width: 170px;
+      width: 120px;
       font-weight: bold;
       font-size: 13px;
+    }
+
+    .duration {
+      color: #f5f5f5;
+      width: 88px;
+      font-weight: bold;
+      font-size: 13px;
+      white-space: nowrap;
     }
 
     .en {
@@ -216,26 +209,14 @@
     .cn {
       color: #888;
       font-size: 13px;
+      line-height: 1.5;
     }
-
-    td.duration {
-      color: #f5f5f5;
-      width: 95px;
-      font-weight: bold;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-
-    .gym { color: #7CFF9B; font-weight: bold; }
-    .swim { color: #6EC6FF; font-weight: bold; }
-    .rest { color: #FFD166; font-weight: bold; }
-    .sleep { color: #C9A7FF; font-weight: bold; }
 
     .note {
       background: #1e1e1e;
       border-left: 4px solid #555;
-      padding: 12px 14px;
-      margin-top: 16px;
+      padding: 11px 13px;
+      margin-top: 14px;
       border-radius: 8px;
       color: #bbb;
       font-size: 13px;
@@ -246,19 +227,14 @@
       background: #181818;
       border: 1px solid #2d2d2d;
       border-radius: 14px;
-      margin-top: 14px;
+      margin-top: 13px;
       overflow: hidden;
-    }
-
-    details.workout[open] {
-      border-color: #3c3c3c;
-      box-shadow: 0 3px 14px rgba(0,0,0,0.28);
     }
 
     details.workout summary {
       list-style: none;
       cursor: pointer;
-      padding: 15px 16px;
+      padding: 14px 15px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -272,14 +248,13 @@
     .summary-main {
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
     .summary-title {
       font-weight: bold;
       font-size: 15px;
-      color: #f5f5f5;
     }
 
     .summary-sub {
@@ -298,119 +273,40 @@
     details[open] .chevron { transform: rotate(90deg); }
 
     .workout-body {
-      padding: 0 14px 14px;
+      padding: 0 13px 13px;
     }
 
-    .exercise-grid {
+    .focus-box {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 14px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
     }
 
-    .exercise-card {
+    .focus-item {
       background: #202020;
       border: 1px solid #303030;
       border-radius: 12px;
-      overflow: hidden;
+      padding: 12px;
     }
 
-    .exercise-card img {
-      width: 100%;
-      height: 150px;
-      object-fit: contain;
-      background: #f5f5f5;
-      display: block;
-    }
-
-    .exercise-info {
-      padding: 10px 12px 12px;
-    }
-
-    .exercise-title {
-      font-size: 13px;
+    .focus-title {
       font-weight: bold;
-      line-height: 1.4;
       color: #fff;
+      font-size: 13px;
       margin-bottom: 5px;
     }
 
-    .exercise-sets {
-      color: #9fd3ff;
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .exercise-note {
+    .focus-text {
       color: #999;
       font-size: 12px;
       line-height: 1.5;
     }
-
-
-
-    .guide-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .guide-card {
-      background: #202020;
-      border: 1px solid #303030;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .guide-visual {
-      height: 150px;
-      background: #f5f5f5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .guide-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .guide-info {
-      padding: 10px 12px 12px;
-    }
-
-    .guide-title {
-      font-size: 13px;
-      font-weight: bold;
-      line-height: 1.4;
-      color: #fff;
-      margin-bottom: 5px;
-    }
-
-    .guide-time {
-      color: #9fd3ff;
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .guide-note {
-      color: #999;
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
 
     .rules-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 12px;
       margin-top: 8px;
     }
 
@@ -418,158 +314,36 @@
       background: #1e1e1e;
       border: 1px solid #2a2a2a;
       border-radius: 10px;
-      padding: 14px 16px;
+      padding: 13px;
     }
 
-    .rule-block .rule-title {
+    .rule-title {
       font-size: 12px;
       color: #888;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 8px;
+      margin-bottom: 7px;
     }
 
     .rule-flow {
       font-size: 13px;
       color: #ddd;
-      line-height: 1.9;
+      line-height: 1.8;
     }
 
-    .rule-flow .arrow {
-      color: #555;
-      margin: 0 4px;
-    }
-
-    .rule-flow .cn {
-      color: #888;
-      font-size: 12px;
-      display: block;
-      margin-top: 4px;
-    }
+    .arrow { color: #555; margin: 0 4px; }
 
     @media (max-width: 600px) {
       body { padding: 12px 12px 40px; }
       h1 { font-size: 22px; }
       .subtitle { font-size: 13px; }
-      .stats-bar { gap: 8px; }
-      .stat { min-width: 90px; padding: 8px 12px; }
-      .stat-num { font-size: 20px; }
-
-      .day-nav {
-        justify-content: flex-start;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        padding-bottom: 10px;
-      }
-
-      .day-nav a {
-        white-space: nowrap;
-        font-size: 12px;
-      }
-
-      .card {
-        padding: 14px;
-        scroll-margin-top: 78px;
-      }
-
-      .card h2 { font-size: 18px; }
-
-      th, td {
-        font-size: 13px;
-        padding: 9px 8px;
-      }
-
-      td.time { width: 96px; }
-      td.duration { width: 72px; font-size: 12px; }
-
-      .exercise-grid {
-        grid-template-columns: 1fr;
-      }
-
-
-      .guide-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .guide-visual {
-        height: 180px;
-      }
-
-
-
-      .exercise-card img {
-        height: 180px;
-      }
-
-  
-
-    .guide-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .guide-card {
-      background: #202020;
-      border: 1px solid #303030;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .guide-visual {
-      height: 150px;
-      background: #f5f5f5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .guide-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .guide-info {
-      padding: 10px 12px 12px;
-    }
-
-    .guide-title {
-      font-size: 13px;
-      font-weight: bold;
-      line-height: 1.4;
-      color: #fff;
-      margin-bottom: 5px;
-    }
-
-    .guide-time {
-      color: #9fd3ff;
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .guide-note {
-      color: #999;
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
-
-    .rules-grid {
-        grid-template-columns: 1fr;
-      }
-
-      details.workout summary {
-        padding: 13px 12px;
-      }
-
+      .card { padding: 14px; }
+      h2 { font-size: 18px; }
+      th, td { font-size: 13px; padding: 9px 7px; }
+      .time { width: 94px; }
+      .duration { width: 72px; font-size: 12px; }
+      .focus-box { grid-template-columns: 1fr; }
+      .rules-grid { grid-template-columns: 1fr; }
       .summary-title { font-size: 14px; }
-      .workout-body { padding: 0 10px 12px; }
     }
   </style>
 </head>
@@ -594,23 +368,23 @@
         <div class="stat-label">Sleep</div>
       </div>
       <div class="stat">
-        <div class="stat-num yellow">0</div>
-        <div class="stat-label">Heavy legs</div>
+        <div class="stat-num yellow">70/30</div>
+        <div class="stat-label">DB / Machine</div>
       </div>
     </div>
 
     <nav class="day-nav">
-      <a href="#gym-day"><span class="dot" style="background:#7CFF9B"></span>Mon–Fri</a>
+      <a href="#weekday"><span class="dot" style="background:#7CFF9B"></span>Mon–Fri</a>
       <a href="#sat"><span class="dot" style="background:#FFD166"></span>Saturday</a>
       <a href="#sun"><span class="dot" style="background:#C9A7FF"></span>Sunday</a>
       <a href="#gym-plan"><span class="dot" style="background:#4caf50"></span>Gym Plan</a>
       <a href="#rules"><span class="dot" style="background:#888"></span>Rules</a>
     </nav>
 
-    <div class="card accent-green" id="gym-day">
+    <div class="card accent-green" id="weekday">
       <div class="card-header">
-        <h2>Mon–Fri — Gym / Swimming Schedule</h2>
-        <span class="day-badge badge-shoulder">Weekday</span>
+        <h2>Mon–Fri Schedule / 平日时间表</h2>
+        <span class="badge badge-green">Weekday</span>
       </div>
 
       <table>
@@ -633,21 +407,21 @@
         <tr>
           <td class="time">18:15 – 19:15</td>
           <td class="duration">1 hr</td>
-          <td><span class="en">Dinner + Rest + Digest</span><br><span class="cn">晚餐 + 休息 + 消化</span></td>
+          <td><span class="en">Dinner + rest + digest</span><br><span class="cn">晚餐 + 休息 + 消化</span></td>
         </tr>
         <tr>
           <td class="time">19:15 – 20:30</td>
           <td class="duration">1h 15m</td>
           <td>
-            <span class="gym">Mon / Tue / Thu / Fri: Gym</span><br>
-            <span class="swim">Wednesday: Swimming</span><br>
+            <span class="en">Mon / Tue / Thu / Fri: Gym</span><br>
+            <span class="en blue">Wednesday: Swimming</span><br>
             <span class="cn">星期一 / 二 / 四 / 五：健身；星期三：游泳</span>
           </td>
         </tr>
         <tr>
           <td class="time">20:30 – 21:00</td>
           <td class="duration">30 min</td>
-          <td><span class="en">Cool down / shower</span><br><span class="cn">放松 / 冲凉，30分钟够</span></td>
+          <td><span class="en">Cool down / shower</span><br><span class="cn">放松 / 冲凉</span></td>
         </tr>
         <tr>
           <td class="time">21:00 – 21:30</td>
@@ -662,30 +436,20 @@
         <tr>
           <td class="time">00:00 – 00:30</td>
           <td class="duration">30 min</td>
-          <td><span class="en">Wind down — no new episode</span><br><span class="cn">准备睡觉 / 不开新一集</span></td>
+          <td><span class="en">Wind down</span><br><span class="cn">准备睡觉 / 不开新一集</span></td>
         </tr>
         <tr>
           <td class="time">00:30 – 07:30</td>
           <td class="duration">7 hrs</td>
-          <td><span class="sleep">Sleep</span><br><span class="cn">睡觉</span></td>
+          <td><span class="en purple">Sleep</span><br><span class="cn">睡觉</span></td>
         </tr>
       </table>
-
-      <div class="note">
-        Same time slot for weekdays: gym on Mon / Tue / Thu / Fri, swimming on Wednesday.
-        <br><span class="cn">平日同一个时间：星期一 / 二 / 四 / 五健身，星期三游泳。</span>
-      </div>
-
-      <div class="note">
-        Wednesday uses the same 19:15–20:30 slot as gym day. Just replace gym with swimming.
-        <br><span class="cn">星期三用同样 19:15–20:30 的时间，只是把健身换成游泳。</span>
-      </div>
     </div>
 
     <div class="card accent-yellow" id="sat">
       <div class="card-header">
         <h2>Saturday / 星期六</h2>
-        <span class="day-badge badge-rest">Rest</span>
+        <span class="badge badge-yellow">Rest</span>
       </div>
 
       <table>
@@ -708,12 +472,12 @@
         <tr>
           <td class="time">Night</td>
           <td class="duration">Flexible</td>
-          <td><span class="rest">Rest</span><br><span class="cn">休息 / 看剧 / 出门 / 放松</span></td>
+          <td><span class="en yellow">Rest / Netflix / outing</span><br><span class="cn">休息 / 看剧 / 出门</span></td>
         </tr>
         <tr>
-          <td class="time">~01:00 – 02:00</td>
+          <td class="time">01:00 – 02:00</td>
           <td class="duration">Sleep</td>
-          <td><span class="sleep">Sleep later on weekends</span><br><span class="cn">周末可以比较迟睡</span></td>
+          <td><span class="en">Sleep later</span><br><span class="cn">周末可以比较迟睡</span></td>
         </tr>
       </table>
     </div>
@@ -721,7 +485,7 @@
     <div class="card accent-purple" id="sun">
       <div class="card-header">
         <h2>Sunday / 星期日</h2>
-        <span class="day-badge badge-recovery">Recovery</span>
+        <span class="badge badge-purple">Recovery</span>
       </div>
 
       <table>
@@ -754,461 +518,152 @@
         <tr>
           <td class="time">00:30</td>
           <td class="duration">Sleep</td>
-          <td><span class="sleep">Sleep — back to weekday schedule</span><br><span class="cn">回到平日睡眠时间</span></td>
+          <td><span class="en purple">Sleep back to weekday time</span><br><span class="cn">回到平日睡眠时间</span></td>
         </tr>
       </table>
-
-      <details class="workout">
-        <summary>
-          <div class="summary-main">
-            <span class="day-badge badge-recovery">Stretch</span>
-            <div>
-              <div class="summary-title">Sunday Stretching Guide / 星期日拉伸 Guide</div>
-              <div class="summary-sub">20–30 min recovery / 恢复拉伸</div>
-            </div>
-          </div>
-          <span class="chevron">›</span>
-        </summary>
-
-        <div class="workout-body">
-
-          <div class="guide-grid">
-            
-            <div class="guide-card">
-              <div class="guide-visual">
-                <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hamstring_Stretch/0.jpg" alt="Hamstring Stretch">
-              </div>
-              <div class="guide-info">
-                <div class="guide-title">Hamstring Stretch / 后腿拉伸</div>
-                <div class="guide-time">2 × 30 sec each side</div>
-                <div class="guide-note">腿伸直，身体慢慢往前，不要弹动。<br>Keep leg straight and lean forward slowly.</div>
-              </div>
-            </div>
-            
-            <div class="guide-card">
-              <div class="guide-visual">
-                <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kneeling_Hip_Flexor/0.jpg" alt="Kneeling Hip Flexor">
-              </div>
-              <div class="guide-info">
-                <div class="guide-title">Kneeling Hip Flexor / 髋屈肌拉伸</div>
-                <div class="guide-time">2 × 30 sec each side</div>
-                <div class="guide-note">一脚前一脚后，骨盆轻轻往前推。<br>Lunge position, push hips forward gently.</div>
-              </div>
-            </div>
-            
-            <div class="guide-card">
-              <div class="guide-visual">
-                <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chest_And_Front_Of_Shoulder_Stretch/1.jpg" alt="Chest and Front Shoulder Stretch">
-              </div>
-              <div class="guide-info">
-                <div class="guide-title">Chest + Front Shoulder Stretch / 胸 + 前肩拉伸</div>
-                <div class="guide-time">2 × 30 sec</div>
-                <div class="guide-note">胸口打开，改善圆肩和久坐紧绷。<br>Open chest, useful for rounded shoulders.</div>
-              </div>
-            </div>
-            
-            <div class="guide-card">
-              <div class="guide-visual">
-                <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Shoulder_Stretch/0.jpg" alt="Shoulder Stretch">
-              </div>
-              <div class="guide-info">
-                <div class="guide-title">Shoulder Stretch / 肩膀拉伸</div>
-                <div class="guide-time">2 × 30 sec each side</div>
-                <div class="guide-note">手臂横过胸前，另一只手轻轻拉住。<br>Pull arm across chest gently.</div>
-              </div>
-            </div>
-            
-            <div class="guide-card">
-              <div class="guide-visual">
-                <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cat_Stretch/0.jpg" alt="Cat Stretch">
-              </div>
-              <div class="guide-info">
-                <div class="guide-title">Cat Stretch / 猫式下背拉伸</div>
-                <div class="guide-time">2 × 30 sec</div>
-                <div class="guide-note">慢慢拱背和放松，不要硬压腰。<br>Round and relax your back slowly.</div>
-              </div>
-            </div>
-          </div>
-
-        
-
-        
-
-        </div>
-      </details>
     </div>
-
 
     <div class="card accent-green" id="gym-plan">
       <div class="card-header">
         <h2>Gym Plan / 健身计划</h2>
+        <span class="badge badge-green">70% DB / 30% Machine</span>
       </div>
-      <div class="note">
-        Tap any section to open.
-        <br><span class="cn">点击任何项目打开。</span>
+
+      <div class="focus-box">
+        <div class="focus-item">
+          <div class="focus-title">Dumbbell 70%</div>
+          <div class="focus-text">肩宽、稳定肌、线条、穿衣服比例。<br>Dumbbells are the main focus.</div>
+        </div>
+        <div class="focus-item">
+          <div class="focus-title">Machine 30%</div>
+          <div class="focus-text">用 3-Station Multi Gym 补胸、背和腹。<br>Machine supports chest, back and abs.</div>
+        </div>
+        <div class="focus-item">
+          <div class="focus-title">Goal</div>
+          <div class="focus-text">肩宽 + V-shape + 胸型 + 腹肌基础。<br>Aesthetic body shape.</div>
+        </div>
       </div>
 
       <details class="workout">
         <summary>
           <div class="summary-main">
-            <span class="day-badge badge-recovery">Everyday</span>
+            <span class="badge badge-gray">Warm Up</span>
             <div>
               <div class="summary-title">Everyday Warm Up / 每次热身</div>
-              <div class="summary-sub">5–8 min / 训练前热身</div>
+              <div class="summary-sub">5–8 min / 每次训练前做</div>
             </div>
           </div>
           <span class="chevron">›</span>
         </summary>
-
         <div class="workout-body">
-
-          <div class="guide-grid">
-            
-            <div class="guide-card">
-              <div class="guide-visual">
-                <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arm_Circles/0.jpg" alt="Arm Circles">
-              </div>
-              <div class="guide-info">
-                <div class="guide-title">Arm Circles / 手臂绕圈</div>
-                <div class="guide-time">1 min</div>
-                <div class="guide-note">前后各 30 秒，让肩膀热起来。<br>30 sec forward + 30 sec backward.</div>
-              </div>
-            </div>
-            
-            <div class="guide-card">
-              <div class="guide-visual">
-                <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chest_And_Front_Of_Shoulder_Stretch/0.jpg" alt="Chest and Front Shoulder Stretch">
-              </div>
-              <div class="guide-info">
-                <div class="guide-title">Chest + Front Shoulder Stretch / 胸 + 前肩拉伸</div>
-                <div class="guide-time">30 sec each side</div>
-                <div class="guide-note">手扶墙/门边，胸口打开，不要硬压。<br>Use wall or doorway, open chest gently.</div>
-              </div>
-            </div>
-            
-            <div class="guide-card">
-              <div class="guide-visual">
-                <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One_Handed_Hang/0.jpg" alt="One Handed Hang">
-              </div>
-              <div class="guide-info">
-                <div class="guide-title">One Handed Hang / 单手悬挂拉背</div>
-                <div class="guide-time">20–30 sec each side</div>
-                <div class="guide-note">拉背阔肌，让背和肩打开。<br>Good for lats and shoulder opening.</div>
-              </div>
-            </div>
-            
-            <div class="guide-card">
-              <div class="guide-visual">
-                <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bodyweight_Squat/0.jpg" alt="Bodyweight Squat">
-              </div>
-              <div class="guide-info">
-                <div class="guide-title">Bodyweight Squat / 徒手深蹲热身</div>
-                <div class="guide-time">10–15 reps</div>
-                <div class="guide-note">轻松做，不追求重，只是让身体醒来。<br>Easy reps only, just warm up.</div>
-              </div>
-            </div>
-          </div>
-
-        
-        </div>
-      </details>
-
-    
-
-      <details class="workout">
-        <summary>
-          <div class="summary-main">
-            <span class="day-badge badge-shoulder">Chest + Shoulder</span>
-            <div>
-              <div class="summary-title">Monday — Chest + Shoulder / 胸型 + 肩宽</div>
-              <div class="summary-sub">Chest + shoulder / 胸型 + 肩宽</div>
-            </div>
-          </div>
-          <span class="chevron">›</span>
-        </summary>
-
-        <div class="workout-body">
-          <div class="exercise-grid">
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bench_Press/0.jpg" alt="Chest Press Machine">
-              <div class="exercise-info">
-                <div class="exercise-title">Chest Press Machine / 综合训练器胸推</div>
-                <div class="exercise-sets">3 × 8–12</div>
-                <div class="exercise-note">Main chest movement / 胸部主动作</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butterfly/0.jpg" alt="Pec Deck">
-              <div class="exercise-info">
-                <div class="exercise-title">Pec Deck / Machine Fly / 夹胸</div>
-                <div class="exercise-sets">3 × 12–15</div>
-                <div class="exercise-note">Chest line + finish / 胸线和收尾</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shoulder_Press/0.jpg" alt="Dumbbell Shoulder Press">
-              <div class="exercise-info">
-                <div class="exercise-title">Dumbbell Shoulder Press / 哑铃肩推</div>
-                <div class="exercise-sets">3 × 8–12</div>
-                <div class="exercise-note">Main shoulder strength / 肩膀主力动作</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lateral_Raise/0.jpg" alt="Lateral Raise">
-              <div class="exercise-info">
-                <div class="exercise-title">Lateral Raise / 哑铃侧平举</div>
-                <div class="exercise-sets">4 × 12–20</div>
-                <div class="exercise-note">Side delt for width / 肩宽重点</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown/0.jpg" alt="Triceps Pushdown">
-              <div class="exercise-info">
-                <div class="exercise-title">Triceps Pushdown / 绳索三头下压</div>
-                <div class="exercise-sets">3 × 10–15</div>
-                <div class="exercise-note">Arm shape / 手臂线条</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg" alt="Plank">
-              <div class="exercise-info">
-                <div class="exercise-title">Plank / 平板支撑</div>
-                <div class="exercise-sets">3 × 30–45 sec</div>
-                <div class="exercise-note">Core stability / 核心稳定</div>
-              </div>
-            </div>
-          </div>
+          <table>
+            <tr><th>Step</th><th>Sets / Time</th><th>Purpose</th></tr>
+            <tr><td>Arm Circles / 手臂绕圈</td><td>1 min</td><td>Warm shoulder / 肩膀热身</td></tr>
+            <tr><td>Chest Opener / 开胸</td><td>30 sec each</td><td>Open chest / 打开胸口</td></tr>
+            <tr><td>Lat Stretch / 背阔肌拉伸</td><td>30 sec each</td><td>Prepare back / 背部准备</td></tr>
+            <tr><td>Light Squat / 徒手深蹲</td><td>10–15 reps</td><td>Wake up body / 让身体醒来</td></tr>
+          </table>
         </div>
       </details>
 
       <details class="workout">
         <summary>
           <div class="summary-main">
-            <span class="day-badge badge-pull">Back</span>
+            <span class="badge badge-green">Monday</span>
             <div>
-              <div class="summary-title">Tuesday — Back + Biceps / 背 + 二头</div>
-              <div class="summary-sub">V-shape back / 倒三角背部</div>
+              <div class="summary-title">Chest + Shoulder / 胸型 + 肩宽</div>
+              <div class="summary-sub">Main: dumbbell press + lateral raise / 胸 + 侧肩</div>
             </div>
           </div>
           <span class="chevron">›</span>
         </summary>
-
         <div class="workout-body">
-          <div class="exercise-grid">
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg" alt="Lat Pulldown">
-              <div class="exercise-info">
-                <div class="exercise-title">Lat Pulldown / 高位下拉</div>
-                <div class="exercise-sets">4 × 8–12</div>
-                <div class="exercise-note">Most important for V shape / V-shape 最重要动作</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Cable_Rows/0.jpg" alt="Seated Cable Row">
-              <div class="exercise-info">
-                <div class="exercise-title">Seated Cable Row / 坐姿划船</div>
-                <div class="exercise-sets">3 × 8–12</div>
-                <div class="exercise-note">Middle back thickness / 中背厚度</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight-Arm_Pulldown/0.jpg" alt="Straight Arm Pulldown">
-              <div class="exercise-info">
-                <div class="exercise-title">Straight-Arm Pulldown / 直臂下压</div>
-                <div class="exercise-sets">3 × 12–15</div>
-                <div class="exercise-note">Lat isolation / 背阔肌孤立</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Face_Pull/0.jpg" alt="Face Pull">
-              <div class="exercise-info">
-                <div class="exercise-title">Face Pull / 面拉</div>
-                <div class="exercise-sets">3 × 12–15</div>
-                <div class="exercise-note">Rear delt + posture / 后肩 + 体态</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Alternate_Bicep_Curl/0.jpg" alt="Dumbbell Curl">
-              <div class="exercise-info">
-                <div class="exercise-title">Dumbbell Alternate Bicep Curl / 哑铃交替弯举</div>
-                <div class="exercise-sets">3 × 10–12</div>
-                <div class="exercise-note">Biceps / 二头肌</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternate_Hammer_Curl/0.jpg" alt="Hammer Curl">
-              <div class="exercise-info">
-                <div class="exercise-title">Alternate Hammer Curl / 哑铃锤式弯举</div>
-                <div class="exercise-sets">2 × 10–12</div>
-                <div class="exercise-note">Arm thickness / 手臂厚度</div>
-              </div>
-            </div>
-          </div>
+          <table>
+            <tr><th>Exercise</th><th>Sets × Reps</th><th>Focus</th></tr>
+            <tr><td>Incline Dumbbell Press<br><span class="cn">上斜哑铃卧推</span></td><td>3 × 8–12</td><td>Upper chest / 上胸</td></tr>
+            <tr><td>Flat Dumbbell Press<br><span class="cn">平板哑铃卧推</span></td><td>3 × 8–12</td><td>Chest shape / 整体胸型</td></tr>
+            <tr><td>Chest Press Machine<br><span class="cn">3-Station 胸推</span></td><td>3 × 10–12</td><td>Machine chest volume / 机器补量</td></tr>
+            <tr><td>Dumbbell Shoulder Press<br><span class="cn">哑铃肩推</span></td><td>3 × 8–12</td><td>Shoulder strength / 肩膀力量</td></tr>
+            <tr><td>Dumbbell Lateral Raise<br><span class="cn">哑铃侧平举</span></td><td>4 × 12–20</td><td>Shoulder width / 肩宽重点</td></tr>
+            <tr><td>Overhead Dumbbell Tricep Extension<br><span class="cn">哑铃过头三头伸展</span></td><td>3 × 10–15</td><td>Triceps / 三头线条</td></tr>
+          </table>
         </div>
       </details>
 
       <details class="workout">
         <summary>
           <div class="summary-main">
-            <span class="day-badge badge-abs">Shoulder + Abs</span>
+            <span class="badge badge-blue">Tuesday</span>
             <div>
-              <div class="summary-title">Thursday — Shoulder + Abs / 肩膀 + 腹肌</div>
-              <div class="summary-sub">Shoulder + abs / 肩膀 + 腹肌</div>
+              <div class="summary-title">Back + Biceps / 背 + 二头</div>
+              <div class="summary-sub">Main: rows + lat pulldown / 背宽 + 手臂</div>
             </div>
           </div>
           <span class="chevron">›</span>
         </summary>
-
         <div class="workout-body">
-          <div class="exercise-grid">
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arnold_Dumbbell_Press/0.jpg" alt="Arnold Press">
-              <div class="exercise-info">
-                <div class="exercise-title">Arnold Dumbbell Press / 阿诺德哑铃推举</div>
-                <div class="exercise-sets">3 × 8–12</div>
-                <div class="exercise-note">Round shoulder / 肩膀立体感</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lateral_Raise/1.jpg" alt="Lateral Raise">
-              <div class="exercise-info">
-                <div class="exercise-title">Lateral Raise / 哑铃侧平举</div>
-                <div class="exercise-sets">4 × 12–20</div>
-                <div class="exercise-note">High-rep shoulder width / 高次数练肩宽</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lying_Rear_Lateral_Raise/0.jpg" alt="Rear Delt Fly">
-              <div class="exercise-info">
-                <div class="exercise-title">Dumbbell Rear Lateral Raise / 哑铃后肩飞鸟</div>
-                <div class="exercise-sets">3 × 12–15</div>
-                <div class="exercise-note">Rear shoulder / 后肩，改善圆肩</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Crunch/0.jpg" alt="Cable Crunch">
-              <div class="exercise-info">
-                <div class="exercise-title">Cable Crunch / 绳索卷腹</div>
-                <div class="exercise-sets">3 × 12–15</div>
-                <div class="exercise-note">Abs thickness / 腹肌厚度</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hanging_Leg_Raise/0.jpg" alt="Hanging Knee Raise">
-              <div class="exercise-info">
-                <div class="exercise-title">Hanging Knee Raise / 悬垂提膝</div>
-                <div class="exercise-sets">3 × 10–15</div>
-                <div class="exercise-note">Lower abs / 下腹</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Russian_Twist/0.jpg" alt="Russian Twist">
-              <div class="exercise-info">
-                <div class="exercise-title">Weighted Russian Twist / 哑铃俄罗斯转体</div>
-                <div class="exercise-sets">3 × 20 total</div>
-                <div class="exercise-note">Abs + side control / 腹肌 + 侧腹控制</div>
-              </div>
-            </div>
-          </div>
+          <table>
+            <tr><th>Exercise</th><th>Sets × Reps</th><th>Focus</th></tr>
+            <tr><td>Lat Pulldown Machine<br><span class="cn">高位下拉</span></td><td>4 × 10–12</td><td>V-shape / 倒三角重点</td></tr>
+            <tr><td>Seated Row Machine<br><span class="cn">坐姿划船</span></td><td>3 × 10–12</td><td>Middle back / 中背厚度</td></tr>
+            <tr><td>One Arm Dumbbell Row<br><span class="cn">单手哑铃划船</span></td><td>3 × 10 each</td><td>Lat + back control / 背阔肌</td></tr>
+            <tr><td>Dumbbell Pullover<br><span class="cn">哑铃上拉</span></td><td>3 × 12</td><td>Back width / 背宽辅助</td></tr>
+            <tr><td>Dumbbell Curl<br><span class="cn">哑铃弯举</span></td><td>3 × 10–12</td><td>Biceps / 二头</td></tr>
+            <tr><td>Hammer Curl<br><span class="cn">锤式弯举</span></td><td>3 × 10–12</td><td>Arm thickness / 手臂厚度</td></tr>
+          </table>
         </div>
       </details>
 
       <details class="workout">
         <summary>
           <div class="summary-main">
-            <span class="day-badge badge-full">V Shape</span>
+            <span class="badge badge-purple">Thursday</span>
             <div>
-              <div class="summary-title">Friday — Upper Body V Shape / 上半身倒三角</div>
-              <div class="summary-sub">Upper body shape / 上半身线条</div>
+              <div class="summary-title">Shoulder + Abs / 肩膀 + 腹肌</div>
+              <div class="summary-sub">Main: side delt + abs / 肩宽 + 腹肌基础</div>
             </div>
           </div>
           <span class="chevron">›</span>
         </summary>
-
         <div class="workout-body">
-          <div class="exercise-grid">
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/1.jpg" alt="Lat Pulldown">
-              <div class="exercise-info">
-                <div class="exercise-title">Lat Pulldown / 高位下拉</div>
-                <div class="exercise-sets">3 × 8–12</div>
-                <div class="exercise-note">Back width / 背宽</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Cable_Rows/1.jpg" alt="Seated Cable Row">
-              <div class="exercise-info">
-                <div class="exercise-title">Seated Cable Row / 坐姿划船</div>
-                <div class="exercise-sets">3 × 10–12</div>
-                <div class="exercise-note">Back thickness / 背厚</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bench_Press/1.jpg" alt="Chest Press">
-              <div class="exercise-info">
-                <div class="exercise-title">Chest Press Machine / 综合训练器胸推</div>
-                <div class="exercise-sets">3 × 8–12</div>
-                <div class="exercise-note">Chest / 胸</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lateral_Raise/0.jpg" alt="Lateral Raise">
-              <div class="exercise-info">
-                <div class="exercise-title">Lateral Raise / 哑铃侧平举</div>
-                <div class="exercise-sets">3 × 12–20</div>
-                <div class="exercise-note">Shoulder width / 肩宽</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown_-_Rope_Attachment/0.jpg" alt="Triceps Pushdown">
-              <div class="exercise-info">
-                <div class="exercise-title">Triceps Pushdown / 绳索三头下压</div>
-                <div class="exercise-sets">2 × 10–15</div>
-                <div class="exercise-note">Triceps / 三头</div>
-              </div>
-            </div>
-            
-            <div class="exercise-card">
-              <img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Alternate_Bicep_Curl/1.jpg" alt="Dumbbell Curl">
-              <div class="exercise-info">
-                <div class="exercise-title">Dumbbell Curl / 哑铃弯举</div>
-                <div class="exercise-sets">2 × 10–12</div>
-                <div class="exercise-note">Biceps / 二头</div>
-              </div>
-            </div>
-          </div>
+          <table>
+            <tr><th>Exercise</th><th>Sets × Reps</th><th>Focus</th></tr>
+            <tr><td>Arnold Press<br><span class="cn">阿诺德推举</span></td><td>3 × 8–12</td><td>Shoulder cap / 肩膀立体感</td></tr>
+            <tr><td>Dumbbell Lateral Raise<br><span class="cn">哑铃侧平举</span></td><td>4 × 15–20</td><td>Shoulder width / 肩宽重点</td></tr>
+            <tr><td>Lean Away Lateral Raise<br><span class="cn">倾斜侧平举</span></td><td>3 × 12</td><td>Side delt / 侧三角</td></tr>
+            <tr><td>Rear Delt Fly<br><span class="cn">后肩飞鸟</span></td><td>3 × 15</td><td>Rear shoulder / 后肩体态</td></tr>
+            <tr><td>Face Pull Machine<br><span class="cn">绳索面拉</span></td><td>3 × 15</td><td>Posture / 改善圆肩</td></tr>
+            <tr><td>Cable Crunch<br><span class="cn">绳索卷腹</span></td><td>3 × 15–20</td><td>Abs thickness / 腹肌厚度</td></tr>
+            <tr><td>Hanging Knee Raise<br><span class="cn">悬垂提膝</span></td><td>3 × 12–15</td><td>Lower abs / 下腹</td></tr>
+            <tr><td>Russian Twist<br><span class="cn">俄罗斯转体</span></td><td>3 × 20</td><td>Core control / 核心控制</td></tr>
+          </table>
+        </div>
+      </details>
 
-          <div class="note">
-            Optional / 可选：Treadmill Walk 10–15 min。
+      <details class="workout">
+        <summary>
+          <div class="summary-main">
+            <span class="badge badge-yellow">Friday</span>
+            <div>
+              <div class="summary-title">Upper Body V-Shape / 上半身倒三角</div>
+              <div class="summary-sub">Main: pump + proportion / 线条 + 整体比例</div>
+            </div>
           </div>
+          <span class="chevron">›</span>
+        </summary>
+        <div class="workout-body">
+          <table>
+            <tr><th>Exercise</th><th>Sets × Reps</th><th>Focus</th></tr>
+            <tr><td>Lat Pulldown Machine<br><span class="cn">高位下拉</span></td><td>3 × 10</td><td>V-shape / 背宽</td></tr>
+            <tr><td>One Arm Dumbbell Row<br><span class="cn">单手哑铃划船</span></td><td>3 × 10 each</td><td>Back control / 背部控制</td></tr>
+            <tr><td>Dumbbell Pullover<br><span class="cn">哑铃上拉</span></td><td>3 × 12</td><td>Upper body frame / 上半身轮廓</td></tr>
+            <tr><td>Dumbbell Lateral Raise<br><span class="cn">哑铃侧平举</span></td><td>3 × 15–20</td><td>Shoulder width / 肩宽</td></tr>
+            <tr><td>Dumbbell Curl<br><span class="cn">哑铃弯举</span></td><td>2 × 12</td><td>Biceps / 二头</td></tr>
+            <tr><td>Tricep Pushdown Machine<br><span class="cn">绳索三头下压</span></td><td>2 × 12</td><td>Triceps / 三头</td></tr>
+          </table>
         </div>
       </details>
     </div>
-
-    
 
     <div class="card accent-gray" id="rules">
       <div class="card-header">
@@ -1217,40 +672,26 @@
 
       <div class="rules-grid">
         <div class="rule-block">
-          <div class="rule-title">Daily Flow</div>
+          <div class="rule-title">Training Flow</div>
           <div class="rule-flow">
-            Dinner <span class="arrow">→</span> Gym <span class="arrow">→</span> Cool down / Shower <span class="arrow">→</span> Reading <span class="arrow">→</span> Netflix <span class="arrow">→</span> Sleep
-            <span class="cn">晚餐 → 健身 → 冲凉 → 阅读 → 看剧 → 睡觉</span>
+            Warm up <span class="arrow">→</span> Main lifts <span class="arrow">→</span> Small muscles <span class="arrow">→</span> Cool down
+            <span class="cn">热身 → 主要动作 → 小肌群 → 放松</span>
           </div>
         </div>
-
         <div class="rule-block">
-          <div class="rule-title">Goal / 目标</div>
+          <div class="rule-title">Goal</div>
           <div class="rule-flow">
             Shoulder width + V-shape + lower body fat
             <span class="cn">肩宽 + 倒三角 + 体脂下降，腹肌才会出来。</span>
           </div>
         </div>
       </div>
+
+      <div class="note">
+        每个动作保留 1–2 reps，不要每组做到完全力竭。动作标准比重量更重要。
+      </div>
     </div>
 
   </div>
-
-  <script>
-    const sections = document.querySelectorAll('.card[id]');
-    const navLinks = document.querySelectorAll('.day-nav a');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(a => a.classList.remove('active'));
-          const active = document.querySelector(`.day-nav a[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { threshold: 0.3 });
-
-    sections.forEach(s => observer.observe(s));
-  </script>
 </body>
 </html>

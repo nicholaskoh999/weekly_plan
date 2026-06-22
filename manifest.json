@@ -1,7 +1,7 @@
 {
   "name": "Weekly Plan",
   "short_name": "Weekly Plan",
-  "description": "Weekly routine, gym, swimming, reading, Netflix and sleep plan.",
+  "description": "Clean weekly schedule and gym plan.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

@@ -1,14 +1,17 @@
 # Weekly Plan
 
-GitHub Pages final version with updated app icon.
+Clean no-media version.
 
-Upload/replace all files in your repository root:
+No photos. No GIFs.
 
+Training ratio:
+- Dumbbell 70%
+- 3-Station Multi Gym 30%
+
+Upload these files to GitHub repository root:
 - index.html
 - manifest.json
 - icon-192.png
 - icon-512.png
 - favicon.png
 - README.md
-
-Then delete the old Android home screen shortcut and add it again.
