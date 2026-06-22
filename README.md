@@ -1,11 +1,16 @@
 # Weekly Plan
 
-Personal weekly routine + gym plan website.
+GitHub Pages version of the Weekly Plan.
 
 ## Files
 
-- `index.html` — main page for GitHub Pages
+- `index.html` — main page
+- `manifest.json` — Android home screen / PWA icon settings
+- `icon-192.png` — home screen icon
+- `icon-512.png` — larger app icon
+- `favicon.png` — browser icon
 
-## GitHub Pages
+## How to update GitHub Pages
 
-Upload `index.html` to a GitHub repository, then enable GitHub Pages from the repository settings.
+Upload or replace all files in this folder to your GitHub repository root.
+Then open your GitHub Pages link and add it to Android home screen again.
