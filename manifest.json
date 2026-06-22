@@ -1,12 +1,12 @@
 {
   "name": "Weekly Plan",
   "short_name": "Weekly Plan",
-  "description": "Clean weekly schedule and gym plan.",
+  "description": "Mobile weekly schedule and gym plan with color categories.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#111111",
-  "theme_color": "#111111",
+  "background_color": "#0f0f10",
+  "theme_color": "#0f0f10",
   "icons": [
     {
       "src": "icon-192.png",

@@ -2,696 +2,878 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Weekly Plan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Weekly Plan Mobile</title>
 
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#111111">
+  <meta name="theme-color" content="#0f0f10">
   <meta name="mobile-web-app-capable" content="yes">
 
   <style>
     * { box-sizing: border-box; }
 
+    :root {
+      --bg: #0f0f10;
+      --card: #1b1b1f;
+      --card2: #222228;
+      --line: #303039;
+      --text: #f7f7f7;
+      --muted: #9c9ca4;
+
+      --green: #7CFF9B;
+      --green-bg: #15351d;
+
+      --blue: #6EC6FF;
+      --blue-bg: #102b3d;
+
+      --yellow: #FFD166;
+      --yellow-bg: #3a2a0f;
+
+      --purple: #C9A7FF;
+      --purple-bg: #2c1d3c;
+
+      --red: #ff7a7a;
+      --red-bg: #3a1717;
+
+      --orange: #ffb36e;
+      --orange-bg: #3a2412;
+
+      --cyan: #64ffe3;
+      --cyan-bg: #12332f;
+    }
+
     html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: #f5f5f5;
-      padding: 22px 22px 48px;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,255,155,0.10), transparent 34%),
+        radial-gradient(circle at top right, rgba(110,198,255,0.10), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      padding: 14px 12px 90px;
     }
 
-    .container {
-      max-width: 980px;
-      margin: auto;
+    .app {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
     }
 
-    h1 {
+    .hero {
+      padding: 18px 10px 13px;
       text-align: center;
-      font-size: 27px;
-      margin: 0 0 6px;
     }
 
-    .subtitle {
-      text-align: center;
-      color: #aaa;
-      margin-bottom: 20px;
-      font-size: 14px;
+    .hero h1 {
+      margin: 0;
+      font-size: 25px;
+      letter-spacing: -0.5px;
     }
 
-    .stats-bar {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
+    .hero p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 8px 0 14px;
     }
 
     .stat {
-      background: #1c1c1c;
-      border: 1px solid #2e2e2e;
-      border-radius: 12px;
-      padding: 10px 14px;
+      background: linear-gradient(160deg, #222228, #18181b);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 10px 6px;
       text-align: center;
-      min-width: 104px;
     }
 
-    .stat-num {
-      font-size: 22px;
-      font-weight: bold;
-      line-height: 1.1;
+    .num {
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1;
     }
 
-    .stat-label {
-      font-size: 11px;
-      color: #888;
-      margin-top: 4px;
+    .label {
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 5px;
     }
 
-    .green { color: #7CFF9B; }
-    .blue { color: #6EC6FF; }
-    .purple { color: #C9A7FF; }
-    .yellow { color: #FFD166; }
+    .green-t { color: var(--green); }
+    .blue-t { color: var(--blue); }
+    .yellow-t { color: var(--yellow); }
+    .purple-t { color: var(--purple); }
+    .orange-t { color: var(--orange); }
+    .cyan-t { color: var(--cyan); }
 
-    .day-nav {
+    .nav {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(17,17,17,0.94);
-      backdrop-filter: blur(8px);
+      z-index: 99;
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding: 10px 0 12px;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #222;
-    }
-
-    .day-nav a {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 13px;
-      border-radius: 20px;
-      background: #1e1e1e;
-      border: 1px solid #333;
-      color: #ccc;
-      font-size: 13px;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    .card {
-      background: #1c1c1c;
-      border: 1px solid #2e2e2e;
-      border-left: 4px solid #333;
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.35);
-      scroll-margin-top: 82px;
-    }
-
-    .accent-green { border-left-color: #4caf50; }
-    .accent-blue { border-left-color: #42a5f5; }
-    .accent-yellow { border-left-color: #FFD166; }
-    .accent-purple { border-left-color: #ab86f7; }
-    .accent-gray { border-left-color: #666; }
-
-    .card-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
+      padding: 10px 0;
+      background: rgba(15,15,16,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #24242a;
       margin-bottom: 12px;
     }
 
-    h2 {
-      margin: 0;
-      font-size: 20px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: bold;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-    }
-
-    .badge-green { background: #1e3a1e; color: #7CFF9B; }
-    .badge-blue { background: #0d2a3a; color: #6EC6FF; }
-    .badge-purple { background: #2e1a3a; color: #C9A7FF; }
-    .badge-yellow { background: #3a2a10; color: #FFD166; }
-    .badge-gray { background: #2a2a2a; color: #aaa; }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-
-    th, td {
-      padding: 10px 9px;
-      border-bottom: 1px solid #2a2a2a;
-      text-align: left;
-      font-size: 14px;
-      vertical-align: top;
-    }
-
-    tr:last-child td { border-bottom: none; }
-
-    th {
-      background: #222;
-      color: #bbb;
+    .nav a {
+      flex: 0 0 auto;
+      text-decoration: none;
+      color: #e6e6e6;
+      background: #202025;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
       font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      font-weight: 800;
     }
 
-    th:first-child { border-radius: 8px 0 0 8px; }
-    th:last-child { border-radius: 0 8px 8px 0; }
-
-    .time {
-      color: #9fd3ff;
-      width: 120px;
-      font-weight: bold;
-      font-size: 13px;
+    .card {
+      background: rgba(27,27,31,0.96);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 14px;
+      margin-bottom: 14px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.28);
+      scroll-margin-top: 72px;
     }
 
-    .duration {
-      color: #f5f5f5;
-      width: 88px;
-      font-weight: bold;
-      font-size: 13px;
-      white-space: nowrap;
-    }
+    .card.green { border-left: 5px solid var(--green); }
+    .card.blue { border-left: 5px solid var(--blue); }
+    .card.yellow { border-left: 5px solid var(--yellow); }
+    .card.purple { border-left: 5px solid var(--purple); }
+    .card.gray { border-left: 5px solid #777; }
 
-    .en {
-      color: #f5f5f5;
-      font-weight: 500;
-    }
-
-    .cn {
-      color: #888;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .note {
-      background: #1e1e1e;
-      border-left: 4px solid #555;
-      padding: 11px 13px;
-      margin-top: 14px;
-      border-radius: 8px;
-      color: #bbb;
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    details.workout {
-      background: #181818;
-      border: 1px solid #2d2d2d;
-      border-radius: 14px;
-      margin-top: 13px;
-      overflow: hidden;
-    }
-
-    details.workout summary {
-      list-style: none;
-      cursor: pointer;
-      padding: 14px 15px;
+    .card-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      background: #202020;
-      user-select: none;
+      gap: 8px;
+      margin-bottom: 12px;
     }
 
-    details.workout summary::-webkit-details-marker { display: none; }
+    .card h2 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
 
-    .summary-main {
+    .tag {
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .tag.green { background: var(--green-bg); color: var(--green); }
+    .tag.blue { background: var(--blue-bg); color: var(--blue); }
+    .tag.yellow { background: var(--yellow-bg); color: var(--yellow); }
+    .tag.purple { background: var(--purple-bg); color: var(--purple); }
+    .tag.orange { background: var(--orange-bg); color: var(--orange); }
+    .tag.cyan { background: var(--cyan-bg); color: var(--cyan); }
+    .tag.gray { background: #2b2b31; color: #bbb; }
+
+    .legend {
       display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 11px;
+    }
+
+    .legend .tag {
+      font-size: 9px;
+      padding: 4px 8px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 8px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 10px;
+      background: var(--card2);
+      border: 1px solid #2d2d34;
+      border-radius: 16px;
+      padding: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .row::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+    }
+
+    .row.morning::before { background: var(--yellow); }
+    .row.work::before { background: var(--blue); }
+    .row.food::before { background: var(--orange); }
+    .row.train::before { background: var(--green); }
+    .row.read::before { background: var(--purple); }
+    .row.sleep::before { background: #8a8aff; }
+    .row.rest::before { background: #aaa; }
+
+    .time {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.3;
+    }
+
+    .duration {
+      display: block;
+      color: #f1f1f1;
+      font-size: 11px;
+      margin-top: 4px;
+      font-weight: 800;
+    }
+
+    .category {
+      display: inline-block;
+      margin-bottom: 5px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      font-size: 9px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+    }
+
+    .cat-morning { background: var(--yellow-bg); color: var(--yellow); }
+    .cat-work { background: var(--blue-bg); color: var(--blue); }
+    .cat-food { background: var(--orange-bg); color: var(--orange); }
+    .cat-train { background: var(--green-bg); color: var(--green); }
+    .cat-read { background: var(--purple-bg); color: var(--purple); }
+    .cat-sleep { background: #252545; color: #aaaaff; }
+    .cat-rest { background: #2b2b31; color: #ccc; }
+
+    .en {
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .cn {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      margin-top: 3px;
+    }
+
+    .focus-clean {
+      background: linear-gradient(160deg, #24242a, #18181b);
+      border: 1px solid #33333b;
+      border-radius: 18px;
+      padding: 13px;
+      margin-bottom: 12px;
+    }
+
+    .focus-main-title {
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .ratio-item {
+      margin-bottom: 12px;
+    }
+
+    .ratio-top {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
       gap: 8px;
-      flex-wrap: wrap;
+      margin-bottom: 6px;
     }
 
-    .summary-title {
-      font-weight: bold;
-      font-size: 15px;
-    }
-
-    .summary-sub {
-      color: #888;
-      font-size: 12px;
-      margin-top: 3px;
-      width: 100%;
-    }
-
-    .chevron {
-      color: #777;
-      font-size: 18px;
-      transition: transform 0.2s;
-    }
-
-    details[open] .chevron { transform: rotate(90deg); }
-
-    .workout-body {
-      padding: 0 13px 13px;
-    }
-
-    .focus-box {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .focus-item {
-      background: #202020;
-      border: 1px solid #303030;
-      border-radius: 12px;
-      padding: 12px;
-    }
-
-    .focus-title {
-      font-weight: bold;
-      color: #fff;
+    .ratio-name {
       font-size: 13px;
-      margin-bottom: 5px;
+      font-weight: 900;
+      color: var(--text);
     }
 
-    .focus-text {
-      color: #999;
+    .ratio-percent {
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .bar {
+      width: 100%;
+      height: 8px;
+      background: #303036;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .bar-fill.green { width: 70%; background: linear-gradient(90deg, var(--green), #c4ffd0); }
+    .bar-fill.blue { width: 30%; background: linear-gradient(90deg, var(--blue), #bde8ff); }
+
+    .ratio-desc {
+      color: var(--muted);
       font-size: 12px;
       line-height: 1.5;
     }
 
-    .rules-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 8px;
+    .goal-box {
+      margin-top: 6px;
+      padding: 11px;
+      border-radius: 15px;
+      background: #18181d;
+      border: 1px solid #343441;
     }
 
-    .rule-block {
-      background: #1e1e1e;
-      border: 1px solid #2a2a2a;
-      border-radius: 10px;
-      padding: 13px;
-    }
-
-    .rule-title {
-      font-size: 12px;
-      color: #888;
+    .goal-title {
+      color: var(--purple);
+      font-size: 11px;
+      font-weight: 900;
       text-transform: uppercase;
-      margin-bottom: 7px;
+      margin-bottom: 5px;
     }
 
-    .rule-flow {
+    .goal-text {
+      color: var(--text);
       font-size: 13px;
-      color: #ddd;
-      line-height: 1.8;
+      font-weight: 900;
+      line-height: 1.5;
     }
 
-    .arrow { color: #555; margin: 0 4px; }
+    .goal-cn {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      margin-top: 3px;
+    }
 
-    @media (max-width: 600px) {
-      body { padding: 12px 12px 40px; }
-      h1 { font-size: 22px; }
-      .subtitle { font-size: 13px; }
-      .card { padding: 14px; }
-      h2 { font-size: 18px; }
-      th, td { font-size: 13px; padding: 9px 7px; }
-      .time { width: 94px; }
-      .duration { width: 72px; font-size: 12px; }
-      .focus-box { grid-template-columns: 1fr; }
-      .rules-grid { grid-template-columns: 1fr; }
-      .summary-title { font-size: 14px; }
+    details {
+      background: #18181c;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: #202026;
+      user-select: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    .summary-left { min-width: 0; }
+
+    .summary-title {
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    .summary-sub {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+      margin-top: 3px;
+    }
+
+    .chev {
+      color: #888;
+      font-size: 18px;
+      transition: 0.2s;
+    }
+
+    details[open] .chev { transform: rotate(90deg); }
+
+    .workout {
+      padding: 10px;
+    }
+
+    .group-title {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin: 8px 0 6px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .group-title:first-child { margin-top: 0; }
+
+    .line {
+      height: 1px;
+      flex: 1;
+      background: #303038;
+    }
+
+    .exercise {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 9px;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 14px;
+      border: 1px solid #2f2f36;
+      background: #202026;
+    }
+
+    .exercise.db {
+      border-left: 4px solid var(--green);
+      background: linear-gradient(90deg, rgba(124,255,155,0.08), #202026 45%);
+    }
+
+    .exercise.machine {
+      border-left: 4px solid var(--blue);
+      background: linear-gradient(90deg, rgba(110,198,255,0.08), #202026 45%);
+    }
+
+    .exercise.core {
+      border-left: 4px solid var(--purple);
+      background: linear-gradient(90deg, rgba(201,167,255,0.08), #202026 45%);
+    }
+
+    .exercise.arm {
+      border-left: 4px solid var(--orange);
+      background: linear-gradient(90deg, rgba(255,179,110,0.08), #202026 45%);
+    }
+
+    .exercise.body {
+      border-left: 4px solid var(--yellow);
+      background: linear-gradient(90deg, rgba(255,209,102,0.08), #202026 45%);
+    }
+
+    .count {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #2b2b31;
+      color: var(--yellow);
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .ex-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+
+    .ex-name {
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .sets {
+      color: var(--blue);
+      font-weight: 900;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .purpose {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      margin-top: 4px;
+    }
+
+    .note {
+      margin-top: 10px;
+      background: #202026;
+      border-left: 4px solid #666;
+      border-radius: 12px;
+      padding: 10px 11px;
+      color: #c5c5c5;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .bottom-space { height: 12px; }
+
+    @media (max-width: 360px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .row { grid-template-columns: 82px 1fr; }
+      .time { font-size: 11px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="app">
 
-    <h1>Weekly Plan</h1>
-    <div class="subtitle">Work · Gym / Swimming · Reading · Netflix · Sleep</div>
+    <section class="hero">
+      <h1>Weekly Plan</h1>
+      <p>Clean mobile schedule · Dumbbell 70% + 3-Station Machine 30%</p>
+    </section>
 
-    <div class="stats-bar">
-      <div class="stat">
-        <div class="stat-num green">4</div>
-        <div class="stat-label">Gym / week</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num blue">1</div>
-        <div class="stat-label">Swim / week</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num purple">7h</div>
-        <div class="stat-label">Sleep</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num yellow">70/30</div>
-        <div class="stat-label">DB / Machine</div>
-      </div>
-    </div>
+    <section class="stats">
+      <div class="stat"><div class="num green-t">4</div><div class="label">Gym</div></div>
+      <div class="stat"><div class="num blue-t">1</div><div class="label">Swim</div></div>
+      <div class="stat"><div class="num purple-t">7h</div><div class="label">Sleep</div></div>
+      <div class="stat"><div class="num yellow-t">70/30</div><div class="label">DB / Machine</div></div>
+    </section>
 
-    <nav class="day-nav">
-      <a href="#weekday"><span class="dot" style="background:#7CFF9B"></span>Mon–Fri</a>
-      <a href="#sat"><span class="dot" style="background:#FFD166"></span>Saturday</a>
-      <a href="#sun"><span class="dot" style="background:#C9A7FF"></span>Sunday</a>
-      <a href="#gym-plan"><span class="dot" style="background:#4caf50"></span>Gym Plan</a>
-      <a href="#rules"><span class="dot" style="background:#888"></span>Rules</a>
+    <nav class="nav">
+      <a href="#weekday">Mon–Fri</a>
+      <a href="#sat">Saturday</a>
+      <a href="#sun">Sunday</a>
+      <a href="#gym">Gym Plan</a>
+      <a href="#rules">Rules</a>
     </nav>
 
-    <div class="card accent-green" id="weekday">
-      <div class="card-header">
-        <h2>Mon–Fri Schedule / 平日时间表</h2>
-        <span class="badge badge-green">Weekday</span>
+    <section class="card green" id="weekday">
+      <div class="card-head">
+        <h2>Mon–Fri</h2>
+        <span class="tag green">Weekday</span>
       </div>
 
-      <table>
-        <tr><th>Time</th><th>Duration</th><th>Plan</th></tr>
-        <tr>
-          <td class="time">07:30 – 08:00</td>
-          <td class="duration">30 min</td>
-          <td><span class="en">Wake up / shower / to work</span><br><span class="cn">起床 / 冲凉 / 去上班</span></td>
-        </tr>
-        <tr>
-          <td class="time">08:00 – 17:00</td>
-          <td class="duration">9 hrs</td>
-          <td><span class="en">Work</span><br><span class="cn">上班</span></td>
-        </tr>
-        <tr>
-          <td class="time">17:00 – 18:15</td>
-          <td class="duration">1h 15m</td>
-          <td><span class="en">Back home / shower / standby</span><br><span class="cn">回家 / 冲凉 / 准备晚餐</span></td>
-        </tr>
-        <tr>
-          <td class="time">18:15 – 19:15</td>
-          <td class="duration">1 hr</td>
-          <td><span class="en">Dinner + rest + digest</span><br><span class="cn">晚餐 + 休息 + 消化</span></td>
-        </tr>
-        <tr>
-          <td class="time">19:15 – 20:30</td>
-          <td class="duration">1h 15m</td>
-          <td>
-            <span class="en">Mon / Tue / Thu / Fri: Gym</span><br>
-            <span class="en blue">Wednesday: Swimming</span><br>
-            <span class="cn">星期一 / 二 / 四 / 五：健身；星期三：游泳</span>
-          </td>
-        </tr>
-        <tr>
-          <td class="time">20:30 – 21:00</td>
-          <td class="duration">30 min</td>
-          <td><span class="en">Cool down / shower</span><br><span class="cn">放松 / 冲凉</span></td>
-        </tr>
-        <tr>
-          <td class="time">21:00 – 21:30</td>
-          <td class="duration">30 min</td>
-          <td><span class="en">Reading</span><br><span class="cn">阅读 30 分钟</span></td>
-        </tr>
-        <tr>
-          <td class="time">21:30 – 00:00</td>
-          <td class="duration">2h 30m</td>
-          <td><span class="en">Netflix / drama</span><br><span class="cn">看剧</span></td>
-        </tr>
-        <tr>
-          <td class="time">00:00 – 00:30</td>
-          <td class="duration">30 min</td>
-          <td><span class="en">Wind down</span><br><span class="cn">准备睡觉 / 不开新一集</span></td>
-        </tr>
-        <tr>
-          <td class="time">00:30 – 07:30</td>
-          <td class="duration">7 hrs</td>
-          <td><span class="en purple">Sleep</span><br><span class="cn">睡觉</span></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="card accent-yellow" id="sat">
-      <div class="card-header">
-        <h2>Saturday / 星期六</h2>
-        <span class="badge badge-yellow">Rest</span>
+      <div class="legend">
+        <span class="tag yellow">Morning</span>
+        <span class="tag blue">Work</span>
+        <span class="tag orange">Dinner</span>
+        <span class="tag green">Training</span>
+        <span class="tag purple">Reading</span>
+        <span class="tag gray">Sleep</span>
       </div>
 
-      <table>
-        <tr><th>Time</th><th>Duration</th><th>Plan</th></tr>
-        <tr>
-          <td class="time">07:30 – 08:00</td>
-          <td class="duration">30 min</td>
-          <td><span class="en">Wake up / shower / to work</span><br><span class="cn">起床 / 冲凉 / 去上班</span></td>
-        </tr>
-        <tr>
-          <td class="time">08:00 – 17:00</td>
-          <td class="duration">9 hrs</td>
-          <td><span class="en">Work</span><br><span class="cn">上班</span></td>
-        </tr>
-        <tr>
-          <td class="time">After Work</td>
-          <td class="duration">Flexible</td>
-          <td><span class="en">Dinner / relax / free time</span><br><span class="cn">晚餐 / 放松 / 自由时间</span></td>
-        </tr>
-        <tr>
-          <td class="time">Night</td>
-          <td class="duration">Flexible</td>
-          <td><span class="en yellow">Rest / Netflix / outing</span><br><span class="cn">休息 / 看剧 / 出门</span></td>
-        </tr>
-        <tr>
-          <td class="time">01:00 – 02:00</td>
-          <td class="duration">Sleep</td>
-          <td><span class="en">Sleep later</span><br><span class="cn">周末可以比较迟睡</span></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="card accent-purple" id="sun">
-      <div class="card-header">
-        <h2>Sunday / 星期日</h2>
-        <span class="badge badge-purple">Recovery</span>
-      </div>
-
-      <table>
-        <tr><th>Time</th><th>Duration</th><th>Plan</th></tr>
-        <tr>
-          <td class="time">Morning</td>
-          <td class="duration">Flexible</td>
-          <td><span class="en">Wake up naturally / slow morning</span><br><span class="cn">自然醒 / 慢慢来</span></td>
-        </tr>
-        <tr>
-          <td class="time">Day Time</td>
-          <td class="duration">Flexible</td>
-          <td><span class="en">Grocery / meal prep / laundry / clean room</span><br><span class="cn">买菜 / 备餐 / 洗衣 / 收拾房间</span></td>
-        </tr>
-        <tr>
-          <td class="time">Evening</td>
-          <td class="duration">20–30 min</td>
-          <td><span class="en">Stretching / mobility / light walk</span><br><span class="cn">拉伸 / 活动关节 / 轻松走路</span></td>
-        </tr>
-        <tr>
-          <td class="time">Night</td>
-          <td class="duration">Flexible</td>
-          <td><span class="en">Reading 30 min + Netflix</span><br><span class="cn">阅读 30 分钟 + 看剧</span></td>
-        </tr>
-        <tr>
-          <td class="time">00:00 – 00:30</td>
-          <td class="duration">30 min</td>
-          <td><span class="en">Wind down</span><br><span class="cn">准备睡觉</span></td>
-        </tr>
-        <tr>
-          <td class="time">00:30</td>
-          <td class="duration">Sleep</td>
-          <td><span class="en purple">Sleep back to weekday time</span><br><span class="cn">回到平日睡眠时间</span></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="card accent-green" id="gym-plan">
-      <div class="card-header">
-        <h2>Gym Plan / 健身计划</h2>
-        <span class="badge badge-green">70% DB / 30% Machine</span>
-      </div>
-
-      <div class="focus-box">
-        <div class="focus-item">
-          <div class="focus-title">Dumbbell 70%</div>
-          <div class="focus-text">肩宽、稳定肌、线条、穿衣服比例。<br>Dumbbells are the main focus.</div>
-        </div>
-        <div class="focus-item">
-          <div class="focus-title">Machine 30%</div>
-          <div class="focus-text">用 3-Station Multi Gym 补胸、背和腹。<br>Machine supports chest, back and abs.</div>
-        </div>
-        <div class="focus-item">
-          <div class="focus-title">Goal</div>
-          <div class="focus-text">肩宽 + V-shape + 胸型 + 腹肌基础。<br>Aesthetic body shape.</div>
-        </div>
-      </div>
-
-      <details class="workout">
-        <summary>
-          <div class="summary-main">
-            <span class="badge badge-gray">Warm Up</span>
-            <div>
-              <div class="summary-title">Everyday Warm Up / 每次热身</div>
-              <div class="summary-sub">5–8 min / 每次训练前做</div>
-            </div>
+      <div class="timeline">
+        <div class="row morning">
+          <div class="time">07:30–08:00<span class="duration">30 min</span></div>
+          <div>
+            <span class="category cat-morning">Morning</span>
+            <div class="en">Wake up / shower / to work</div>
+            <div class="cn">起床 / 冲凉 / 去上班</div>
           </div>
-          <span class="chevron">›</span>
+        </div>
+
+        <div class="row work">
+          <div class="time">08:00–17:00<span class="duration">9 hrs</span></div>
+          <div>
+            <span class="category cat-work">Work</span>
+            <div class="en">Work</div>
+            <div class="cn">上班</div>
+          </div>
+        </div>
+
+        <div class="row rest">
+          <div class="time">17:00–18:15<span class="duration">1h 15m</span></div>
+          <div>
+            <span class="category cat-rest">Reset</span>
+            <div class="en">Back home / shower / standby</div>
+            <div class="cn">回家 / 冲凉 / 准备晚餐</div>
+          </div>
+        </div>
+
+        <div class="row food">
+          <div class="time">18:15–19:15<span class="duration">1 hr</span></div>
+          <div>
+            <span class="category cat-food">Dinner</span>
+            <div class="en">Dinner + rest + digest</div>
+            <div class="cn">晚餐 + 休息 + 消化</div>
+          </div>
+        </div>
+
+        <div class="row train">
+          <div class="time">19:15–20:30<span class="duration">1h 15m</span></div>
+          <div>
+            <span class="category cat-train">Training</span>
+            <div class="en">Mon / Tue / Thu / Fri: Gym</div>
+            <div class="en blue-t">Wednesday: Swimming</div>
+            <div class="cn">星期一 / 二 / 四 / 五：健身；星期三：游泳</div>
+          </div>
+        </div>
+
+        <div class="row rest">
+          <div class="time">20:30–21:00<span class="duration">30 min</span></div>
+          <div>
+            <span class="category cat-rest">Recovery</span>
+            <div class="en">Cool down / shower</div>
+            <div class="cn">放松 / 冲凉</div>
+          </div>
+        </div>
+
+        <div class="row read">
+          <div class="time">21:00–21:30<span class="duration">30 min</span></div>
+          <div>
+            <span class="category cat-read">Reading</span>
+            <div class="en">Reading</div>
+            <div class="cn">阅读 30 分钟</div>
+          </div>
+        </div>
+
+        <div class="row rest">
+          <div class="time">21:30–00:00<span class="duration">2h 30m</span></div>
+          <div>
+            <span class="category cat-rest">Netflix</span>
+            <div class="en">Netflix / drama</div>
+            <div class="cn">看剧</div>
+          </div>
+        </div>
+
+        <div class="row sleep">
+          <div class="time">00:00–00:30<span class="duration">30 min</span></div>
+          <div>
+            <span class="category cat-sleep">Wind Down</span>
+            <div class="en">Wind down</div>
+            <div class="cn">准备睡觉 / 不开新一集</div>
+          </div>
+        </div>
+
+        <div class="row sleep">
+          <div class="time">00:30–07:30<span class="duration">7 hrs</span></div>
+          <div>
+            <span class="category cat-sleep">Sleep</span>
+            <div class="en purple-t">Sleep</div>
+            <div class="cn">睡觉</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card yellow" id="sat">
+      <div class="card-head">
+        <h2>Saturday</h2>
+        <span class="tag yellow">Rest</span>
+      </div>
+
+      <div class="timeline">
+        <div class="row morning"><div class="time">07:30–08:00<span class="duration">30 min</span></div><div><span class="category cat-morning">Morning</span><div class="en">Wake up / shower / to work</div><div class="cn">起床 / 冲凉 / 去上班</div></div></div>
+        <div class="row work"><div class="time">08:00–17:00<span class="duration">9 hrs</span></div><div><span class="category cat-work">Work</span><div class="en">Work</div><div class="cn">上班</div></div></div>
+        <div class="row food"><div class="time">After Work<span class="duration">Flexible</span></div><div><span class="category cat-food">Dinner</span><div class="en">Dinner / relax / free time</div><div class="cn">晚餐 / 放松 / 自由时间</div></div></div>
+        <div class="row rest"><div class="time">Night<span class="duration">Flexible</span></div><div><span class="category cat-rest">Free Time</span><div class="en yellow-t">Rest / Netflix / outing</div><div class="cn">休息 / 看剧 / 出门</div></div></div>
+        <div class="row sleep"><div class="time">01:00–02:00<span class="duration">Sleep</span></div><div><span class="category cat-sleep">Sleep</span><div class="en">Sleep later</div><div class="cn">周末可以比较迟睡</div></div></div>
+      </div>
+    </section>
+
+    <section class="card purple" id="sun">
+      <div class="card-head">
+        <h2>Sunday</h2>
+        <span class="tag purple">Recovery</span>
+      </div>
+
+      <div class="timeline">
+        <div class="row morning"><div class="time">Morning<span class="duration">Flexible</span></div><div><span class="category cat-morning">Slow Morning</span><div class="en">Wake up naturally / slow morning</div><div class="cn">自然醒 / 慢慢来</div></div></div>
+        <div class="row food"><div class="time">Day Time<span class="duration">Flexible</span></div><div><span class="category cat-food">Prepare</span><div class="en">Grocery / meal prep / laundry / clean room</div><div class="cn">买菜 / 备餐 / 洗衣 / 收拾房间</div></div></div>
+        <div class="row train"><div class="time">Evening<span class="duration">20–30m</span></div><div><span class="category cat-train">Recovery</span><div class="en">Stretching / mobility / light walk</div><div class="cn">拉伸 / 活动关节 / 轻松走路</div></div></div>
+        <div class="row read"><div class="time">Night<span class="duration">Flexible</span></div><div><span class="category cat-read">Reading</span><div class="en">Reading 30 min + Netflix</div><div class="cn">阅读 30 分钟 + 看剧</div></div></div>
+        <div class="row sleep"><div class="time">00:30<span class="duration">Sleep</span></div><div><span class="category cat-sleep">Sleep</span><div class="en purple-t">Sleep back to weekday time</div><div class="cn">回到平日睡眠时间</div></div></div>
+      </div>
+    </section>
+
+    <section class="card green" id="gym">
+      <div class="card-head">
+        <h2>Gym Plan</h2>
+        <span class="tag green">70% DB / 30% Machine</span>
+      </div>
+
+      <div class="legend">
+        <span class="tag green">Dumbbell</span>
+        <span class="tag blue">Machine</span>
+        <span class="tag purple">Core</span>
+        <span class="tag orange">Arms</span>
+      </div>
+
+      <div class="focus-clean">
+        <div class="focus-main-title">Training Focus / 训练重点</div>
+
+        <div class="ratio-item">
+          <div class="ratio-top">
+            <div class="ratio-name">Dumbbell Main Focus</div>
+            <div class="ratio-percent green-t">70%</div>
+          </div>
+          <div class="bar"><div class="bar-fill green"></div></div>
+          <div class="ratio-desc">肩宽、稳定肌、线条、穿衣比例。<br>Shoulder width, stability, shape and outfit fit.</div>
+        </div>
+
+        <div class="ratio-item">
+          <div class="ratio-top">
+            <div class="ratio-name">3-Station Machine Support</div>
+            <div class="ratio-percent blue-t">30%</div>
+          </div>
+          <div class="bar"><div class="bar-fill blue"></div></div>
+          <div class="ratio-desc">胸推、高位下拉、坐姿划船、绳索动作。<br>Chest press, lat pulldown, seated row and cable work.</div>
+        </div>
+
+        <div class="goal-box">
+          <div class="goal-title">Goal</div>
+          <div class="goal-text">Shoulder width + V-shape + Chest shape + Abs foundation</div>
+          <div class="goal-cn">肩宽 + V-shape + 胸型 + 腹肌基础</div>
+        </div>
+      </div>
+
+      <details>
+        <summary>
+          <div class="summary-left">
+            <div class="summary-title">Everyday Warm Up / 每次热身</div>
+            <div class="summary-sub">5–8 min before training</div>
+          </div>
+          <div class="chev">›</div>
         </summary>
-        <div class="workout-body">
-          <table>
-            <tr><th>Step</th><th>Sets / Time</th><th>Purpose</th></tr>
-            <tr><td>Arm Circles / 手臂绕圈</td><td>1 min</td><td>Warm shoulder / 肩膀热身</td></tr>
-            <tr><td>Chest Opener / 开胸</td><td>30 sec each</td><td>Open chest / 打开胸口</td></tr>
-            <tr><td>Lat Stretch / 背阔肌拉伸</td><td>30 sec each</td><td>Prepare back / 背部准备</td></tr>
-            <tr><td>Light Squat / 徒手深蹲</td><td>10–15 reps</td><td>Wake up body / 让身体醒来</td></tr>
-          </table>
+        <div class="workout">
+          <div class="group-title yellow-t">Body Prep <span class="line"></span></div>
+          <div class="exercise body"><div class="count">1</div><div><div class="ex-top"><div class="ex-name">Arm Circles / 手臂绕圈</div><span class="tag yellow">Warm</span></div><div class="sets">1 min</div><div class="purpose">Warm shoulder / 肩膀热身</div></div></div>
+          <div class="exercise body"><div class="count">2</div><div><div class="ex-top"><div class="ex-name">Chest Opener / 开胸</div><span class="tag yellow">Warm</span></div><div class="sets">30 sec each</div><div class="purpose">Open chest / 打开胸口</div></div></div>
+          <div class="exercise body"><div class="count">3</div><div><div class="ex-top"><div class="ex-name">Lat Stretch / 背阔肌拉伸</div><span class="tag yellow">Warm</span></div><div class="sets">30 sec each</div><div class="purpose">Prepare back / 背部准备</div></div></div>
+          <div class="exercise body"><div class="count">4</div><div><div class="ex-top"><div class="ex-name">Light Squat / 徒手深蹲</div><span class="tag yellow">Warm</span></div><div class="sets">10–15 reps</div><div class="purpose">Wake up body / 让身体醒来</div></div></div>
         </div>
       </details>
 
-      <details class="workout">
+      <details>
         <summary>
-          <div class="summary-main">
-            <span class="badge badge-green">Monday</span>
-            <div>
-              <div class="summary-title">Chest + Shoulder / 胸型 + 肩宽</div>
-              <div class="summary-sub">Main: dumbbell press + lateral raise / 胸 + 侧肩</div>
-            </div>
+          <div class="summary-left">
+            <div class="summary-title">Monday — Chest + Shoulder</div>
+            <div class="summary-sub">胸型 + 肩宽</div>
           </div>
-          <span class="chevron">›</span>
+          <div class="chev">›</div>
         </summary>
-        <div class="workout-body">
-          <table>
-            <tr><th>Exercise</th><th>Sets × Reps</th><th>Focus</th></tr>
-            <tr><td>Incline Dumbbell Press<br><span class="cn">上斜哑铃卧推</span></td><td>3 × 8–12</td><td>Upper chest / 上胸</td></tr>
-            <tr><td>Flat Dumbbell Press<br><span class="cn">平板哑铃卧推</span></td><td>3 × 8–12</td><td>Chest shape / 整体胸型</td></tr>
-            <tr><td>Chest Press Machine<br><span class="cn">3-Station 胸推</span></td><td>3 × 10–12</td><td>Machine chest volume / 机器补量</td></tr>
-            <tr><td>Dumbbell Shoulder Press<br><span class="cn">哑铃肩推</span></td><td>3 × 8–12</td><td>Shoulder strength / 肩膀力量</td></tr>
-            <tr><td>Dumbbell Lateral Raise<br><span class="cn">哑铃侧平举</span></td><td>4 × 12–20</td><td>Shoulder width / 肩宽重点</td></tr>
-            <tr><td>Overhead Dumbbell Tricep Extension<br><span class="cn">哑铃过头三头伸展</span></td><td>3 × 10–15</td><td>Triceps / 三头线条</td></tr>
-          </table>
+        <div class="workout">
+          <div class="group-title green-t">Dumbbell Main <span class="line"></span></div>
+          <div class="exercise db"><div class="count">1</div><div><div class="ex-top"><div class="ex-name">Incline Dumbbell Press</div><span class="tag green">DB</span></div><div class="sets">3 × 8–12</div><div class="purpose">Upper chest / 上胸</div></div></div>
+          <div class="exercise db"><div class="count">2</div><div><div class="ex-top"><div class="ex-name">Flat Dumbbell Press</div><span class="tag green">DB</span></div><div class="sets">3 × 8–12</div><div class="purpose">Chest shape / 整体胸型</div></div></div>
+
+          <div class="group-title blue-t">Machine Support <span class="line"></span></div>
+          <div class="exercise machine"><div class="count">3</div><div><div class="ex-top"><div class="ex-name">Chest Press Machine</div><span class="tag blue">Machine</span></div><div class="sets">3 × 10–12</div><div class="purpose">Machine chest volume / 机器补量</div></div></div>
+
+          <div class="group-title green-t">Shoulder <span class="line"></span></div>
+          <div class="exercise db"><div class="count">4</div><div><div class="ex-top"><div class="ex-name">Dumbbell Shoulder Press</div><span class="tag green">DB</span></div><div class="sets">3 × 8–12</div><div class="purpose">Shoulder strength / 肩膀力量</div></div></div>
+          <div class="exercise db"><div class="count">5</div><div><div class="ex-top"><div class="ex-name">Dumbbell Lateral Raise</div><span class="tag green">DB</span></div><div class="sets">4 × 12–20</div><div class="purpose">Shoulder width / 肩宽重点</div></div></div>
+
+          <div class="group-title orange-t">Arms <span class="line"></span></div>
+          <div class="exercise arm"><div class="count">6</div><div><div class="ex-top"><div class="ex-name">Overhead Dumbbell Tricep Extension</div><span class="tag orange">Arms</span></div><div class="sets">3 × 10–15</div><div class="purpose">Triceps / 三头线条</div></div></div>
         </div>
       </details>
 
-      <details class="workout">
+      <details>
         <summary>
-          <div class="summary-main">
-            <span class="badge badge-blue">Tuesday</span>
-            <div>
-              <div class="summary-title">Back + Biceps / 背 + 二头</div>
-              <div class="summary-sub">Main: rows + lat pulldown / 背宽 + 手臂</div>
-            </div>
+          <div class="summary-left">
+            <div class="summary-title">Tuesday — Back + Biceps</div>
+            <div class="summary-sub">背宽 + 手臂</div>
           </div>
-          <span class="chevron">›</span>
+          <div class="chev">›</div>
         </summary>
-        <div class="workout-body">
-          <table>
-            <tr><th>Exercise</th><th>Sets × Reps</th><th>Focus</th></tr>
-            <tr><td>Lat Pulldown Machine<br><span class="cn">高位下拉</span></td><td>4 × 10–12</td><td>V-shape / 倒三角重点</td></tr>
-            <tr><td>Seated Row Machine<br><span class="cn">坐姿划船</span></td><td>3 × 10–12</td><td>Middle back / 中背厚度</td></tr>
-            <tr><td>One Arm Dumbbell Row<br><span class="cn">单手哑铃划船</span></td><td>3 × 10 each</td><td>Lat + back control / 背阔肌</td></tr>
-            <tr><td>Dumbbell Pullover<br><span class="cn">哑铃上拉</span></td><td>3 × 12</td><td>Back width / 背宽辅助</td></tr>
-            <tr><td>Dumbbell Curl<br><span class="cn">哑铃弯举</span></td><td>3 × 10–12</td><td>Biceps / 二头</td></tr>
-            <tr><td>Hammer Curl<br><span class="cn">锤式弯举</span></td><td>3 × 10–12</td><td>Arm thickness / 手臂厚度</td></tr>
-          </table>
+        <div class="workout">
+          <div class="group-title blue-t">Machine Back <span class="line"></span></div>
+          <div class="exercise machine"><div class="count">1</div><div><div class="ex-top"><div class="ex-name">Lat Pulldown Machine</div><span class="tag blue">Machine</span></div><div class="sets">4 × 10–12</div><div class="purpose">V-shape / 倒三角重点</div></div></div>
+          <div class="exercise machine"><div class="count">2</div><div><div class="ex-top"><div class="ex-name">Seated Row Machine</div><span class="tag blue">Machine</span></div><div class="sets">3 × 10–12</div><div class="purpose">Middle back / 中背厚度</div></div></div>
+
+          <div class="group-title green-t">Dumbbell Back <span class="line"></span></div>
+          <div class="exercise db"><div class="count">3</div><div><div class="ex-top"><div class="ex-name">One Arm Dumbbell Row</div><span class="tag green">DB</span></div><div class="sets">3 × 10 each</div><div class="purpose">Lat + back control / 背阔肌</div></div></div>
+          <div class="exercise db"><div class="count">4</div><div><div class="ex-top"><div class="ex-name">Dumbbell Pullover</div><span class="tag green">DB</span></div><div class="sets">3 × 12</div><div class="purpose">Back width / 背宽辅助</div></div></div>
+
+          <div class="group-title orange-t">Biceps <span class="line"></span></div>
+          <div class="exercise arm"><div class="count">5</div><div><div class="ex-top"><div class="ex-name">Dumbbell Curl</div><span class="tag orange">Arms</span></div><div class="sets">3 × 10–12</div><div class="purpose">Biceps / 二头</div></div></div>
+          <div class="exercise arm"><div class="count">6</div><div><div class="ex-top"><div class="ex-name">Hammer Curl</div><span class="tag orange">Arms</span></div><div class="sets">3 × 10–12</div><div class="purpose">Arm thickness / 手臂厚度</div></div></div>
         </div>
       </details>
 
-      <details class="workout">
+      <details>
         <summary>
-          <div class="summary-main">
-            <span class="badge badge-purple">Thursday</span>
-            <div>
-              <div class="summary-title">Shoulder + Abs / 肩膀 + 腹肌</div>
-              <div class="summary-sub">Main: side delt + abs / 肩宽 + 腹肌基础</div>
-            </div>
+          <div class="summary-left">
+            <div class="summary-title">Thursday — Shoulder + Abs</div>
+            <div class="summary-sub">肩宽 + 腹肌基础</div>
           </div>
-          <span class="chevron">›</span>
+          <div class="chev">›</div>
         </summary>
-        <div class="workout-body">
-          <table>
-            <tr><th>Exercise</th><th>Sets × Reps</th><th>Focus</th></tr>
-            <tr><td>Arnold Press<br><span class="cn">阿诺德推举</span></td><td>3 × 8–12</td><td>Shoulder cap / 肩膀立体感</td></tr>
-            <tr><td>Dumbbell Lateral Raise<br><span class="cn">哑铃侧平举</span></td><td>4 × 15–20</td><td>Shoulder width / 肩宽重点</td></tr>
-            <tr><td>Lean Away Lateral Raise<br><span class="cn">倾斜侧平举</span></td><td>3 × 12</td><td>Side delt / 侧三角</td></tr>
-            <tr><td>Rear Delt Fly<br><span class="cn">后肩飞鸟</span></td><td>3 × 15</td><td>Rear shoulder / 后肩体态</td></tr>
-            <tr><td>Face Pull Machine<br><span class="cn">绳索面拉</span></td><td>3 × 15</td><td>Posture / 改善圆肩</td></tr>
-            <tr><td>Cable Crunch<br><span class="cn">绳索卷腹</span></td><td>3 × 15–20</td><td>Abs thickness / 腹肌厚度</td></tr>
-            <tr><td>Hanging Knee Raise<br><span class="cn">悬垂提膝</span></td><td>3 × 12–15</td><td>Lower abs / 下腹</td></tr>
-            <tr><td>Russian Twist<br><span class="cn">俄罗斯转体</span></td><td>3 × 20</td><td>Core control / 核心控制</td></tr>
-          </table>
+        <div class="workout">
+          <div class="group-title green-t">Shoulder Width <span class="line"></span></div>
+          <div class="exercise db"><div class="count">1</div><div><div class="ex-top"><div class="ex-name">Arnold Press</div><span class="tag green">DB</span></div><div class="sets">3 × 8–12</div><div class="purpose">Shoulder cap / 肩膀立体感</div></div></div>
+          <div class="exercise db"><div class="count">2</div><div><div class="ex-top"><div class="ex-name">Dumbbell Lateral Raise</div><span class="tag green">DB</span></div><div class="sets">4 × 15–20</div><div class="purpose">Shoulder width / 肩宽重点</div></div></div>
+          <div class="exercise db"><div class="count">3</div><div><div class="ex-top"><div class="ex-name">Lean Away Lateral Raise</div><span class="tag green">DB</span></div><div class="sets">3 × 12</div><div class="purpose">Side delt / 侧三角</div></div></div>
+          <div class="exercise db"><div class="count">4</div><div><div class="ex-top"><div class="ex-name">Rear Delt Fly</div><span class="tag green">DB</span></div><div class="sets">3 × 15</div><div class="purpose">Rear shoulder / 后肩体态</div></div></div>
+
+          <div class="group-title blue-t">Machine Posture <span class="line"></span></div>
+          <div class="exercise machine"><div class="count">5</div><div><div class="ex-top"><div class="ex-name">Face Pull Machine</div><span class="tag blue">Machine</span></div><div class="sets">3 × 15</div><div class="purpose">Posture / 改善圆肩</div></div></div>
+
+          <div class="group-title purple-t">Core <span class="line"></span></div>
+          <div class="exercise core"><div class="count">6</div><div><div class="ex-top"><div class="ex-name">Cable Crunch</div><span class="tag purple">Core</span></div><div class="sets">3 × 15–20</div><div class="purpose">Abs thickness / 腹肌厚度</div></div></div>
+          <div class="exercise core"><div class="count">7</div><div><div class="ex-top"><div class="ex-name">Hanging Knee Raise</div><span class="tag purple">Core</span></div><div class="sets">3 × 12–15</div><div class="purpose">Lower abs / 下腹</div></div></div>
+          <div class="exercise core"><div class="count">8</div><div><div class="ex-top"><div class="ex-name">Russian Twist</div><span class="tag purple">Core</span></div><div class="sets">3 × 20</div><div class="purpose">Core control / 核心控制</div></div></div>
         </div>
       </details>
 
-      <details class="workout">
+      <details>
         <summary>
-          <div class="summary-main">
-            <span class="badge badge-yellow">Friday</span>
-            <div>
-              <div class="summary-title">Upper Body V-Shape / 上半身倒三角</div>
-              <div class="summary-sub">Main: pump + proportion / 线条 + 整体比例</div>
-            </div>
+          <div class="summary-left">
+            <div class="summary-title">Friday — Upper Body V-Shape</div>
+            <div class="summary-sub">线条 + 整体比例</div>
           </div>
-          <span class="chevron">›</span>
+          <div class="chev">›</div>
         </summary>
-        <div class="workout-body">
-          <table>
-            <tr><th>Exercise</th><th>Sets × Reps</th><th>Focus</th></tr>
-            <tr><td>Lat Pulldown Machine<br><span class="cn">高位下拉</span></td><td>3 × 10</td><td>V-shape / 背宽</td></tr>
-            <tr><td>One Arm Dumbbell Row<br><span class="cn">单手哑铃划船</span></td><td>3 × 10 each</td><td>Back control / 背部控制</td></tr>
-            <tr><td>Dumbbell Pullover<br><span class="cn">哑铃上拉</span></td><td>3 × 12</td><td>Upper body frame / 上半身轮廓</td></tr>
-            <tr><td>Dumbbell Lateral Raise<br><span class="cn">哑铃侧平举</span></td><td>3 × 15–20</td><td>Shoulder width / 肩宽</td></tr>
-            <tr><td>Dumbbell Curl<br><span class="cn">哑铃弯举</span></td><td>2 × 12</td><td>Biceps / 二头</td></tr>
-            <tr><td>Tricep Pushdown Machine<br><span class="cn">绳索三头下压</span></td><td>2 × 12</td><td>Triceps / 三头</td></tr>
-          </table>
+        <div class="workout">
+          <div class="group-title blue-t">Machine V-Shape <span class="line"></span></div>
+          <div class="exercise machine"><div class="count">1</div><div><div class="ex-top"><div class="ex-name">Lat Pulldown Machine</div><span class="tag blue">Machine</span></div><div class="sets">3 × 10</div><div class="purpose">V-shape / 背宽</div></div></div>
+
+          <div class="group-title green-t">Dumbbell Shape <span class="line"></span></div>
+          <div class="exercise db"><div class="count">2</div><div><div class="ex-top"><div class="ex-name">One Arm Dumbbell Row</div><span class="tag green">DB</span></div><div class="sets">3 × 10 each</div><div class="purpose">Back control / 背部控制</div></div></div>
+          <div class="exercise db"><div class="count">3</div><div><div class="ex-top"><div class="ex-name">Dumbbell Pullover</div><span class="tag green">DB</span></div><div class="sets">3 × 12</div><div class="purpose">Upper body frame / 上半身轮廓</div></div></div>
+          <div class="exercise db"><div class="count">4</div><div><div class="ex-top"><div class="ex-name">Dumbbell Lateral Raise</div><span class="tag green">DB</span></div><div class="sets">3 × 15–20</div><div class="purpose">Shoulder width / 肩宽</div></div></div>
+
+          <div class="group-title orange-t">Pump Finish <span class="line"></span></div>
+          <div class="exercise arm"><div class="count">5</div><div><div class="ex-top"><div class="ex-name">Dumbbell Curl</div><span class="tag orange">Arms</span></div><div class="sets">2 × 12</div><div class="purpose">Biceps / 二头</div></div></div>
+          <div class="exercise arm"><div class="count">6</div><div><div class="ex-top"><div class="ex-name">Tricep Pushdown Machine</div><span class="tag orange">Arms</span></div><div class="sets">2 × 12</div><div class="purpose">Triceps / 三头</div></div></div>
         </div>
       </details>
-    </div>
+    </section>
 
-    <div class="card accent-gray" id="rules">
-      <div class="card-header">
-        <h2>Rules / 规则</h2>
-      </div>
-
-      <div class="rules-grid">
-        <div class="rule-block">
-          <div class="rule-title">Training Flow</div>
-          <div class="rule-flow">
-            Warm up <span class="arrow">→</span> Main lifts <span class="arrow">→</span> Small muscles <span class="arrow">→</span> Cool down
-            <span class="cn">热身 → 主要动作 → 小肌群 → 放松</span>
-          </div>
-        </div>
-        <div class="rule-block">
-          <div class="rule-title">Goal</div>
-          <div class="rule-flow">
-            Shoulder width + V-shape + lower body fat
-            <span class="cn">肩宽 + 倒三角 + 体脂下降，腹肌才会出来。</span>
-          </div>
-        </div>
+    <section class="card gray" id="rules">
+      <div class="card-head">
+        <h2>Rules</h2>
+        <span class="tag gray">Simple</span>
       </div>
 
       <div class="note">
         每个动作保留 1–2 reps，不要每组做到完全力竭。动作标准比重量更重要。
       </div>
-    </div>
 
+      <div class="note">
+        目标：肩宽 + V-shape + 体脂下降。腹肌主要靠训练 + 饮食控制。
+      </div>
+    </section>
+
+    <div class="bottom-space"></div>
   </div>
 </body>
 </html>

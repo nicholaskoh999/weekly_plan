@@ -1,17 +1,21 @@
-# Weekly Plan
+# Weekly Plan Mobile - Color Categories
 
-Clean no-media version.
+Mobile-first weekly schedule and gym plan.
 
 No photos. No GIFs.
 
-Training ratio:
-- Dumbbell 70%
-- 3-Station Multi Gym 30%
+Color categories:
+- Yellow: Morning / Warm Up
+- Blue: Work / Machine
+- Green: Training / Dumbbell
+- Purple: Reading / Core
+- Orange: Dinner / Arms
+- Gray: Rest / Sleep
 
-Upload these files to GitHub repository root:
+Upload all files to your GitHub repository root:
 - index.html
 - manifest.json
+- favicon.png
 - icon-192.png
 - icon-512.png
-- favicon.png
 - README.md
