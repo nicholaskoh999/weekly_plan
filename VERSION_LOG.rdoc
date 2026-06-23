@@ -1,0 +1,98 @@
+= V-Shape 100 Body Route Version Log
+
+== v1.5 - 23 Jun 2026
+
+* Reworded the Korean flavor note in the fixed 100-day meal base.
+* Changed Nutrition tag text to white for better readability.
+
+== v1.4 - 23 Jun 2026
+
+* Split every weekly meal plan item into separate English and Chinese lines.
+* Improved mobile readability for bilingual meal cards.
+
+== v1.3 - 23 Jun 2026
+
+* Changed the weekly meal plan into a fixed 100-day repeatable meal base.
+* Removed the "This Week" wording from the Nutrition page.
+* Added AEON grocery picks based on myAEON2go shopping categories.
+* Added fallback guidance when canned lunch protein is not available.
+
+== v1.2 - 23 Jun 2026
+
+* Added a weekly fat-loss meal planner to the standalone Nutrition page.
+* Added Monday to Sunday breakfast, lunch, dinner, and optional snack cards.
+* Kept Monday to Friday lunches office-friendly with no cooking needed at lunch.
+* Limited tuna to one day and pulled chicken to two days for the week.
+
+== v1.1 - 23 Jun 2026
+
+* Switched the version style to v1.0, v1.1, v1.2 for future updates.
+* Expanded the standalone Nutrition page with bilingual English and Chinese guidance.
+* Added breakfast, lunch, dinner, night, and training-day nutrition notes.
+* Added a 168 cm body tracker with adjustable weight, BMI, and rough body fat estimate.
+
+== v1.0.11 - 23 Jun 2026
+
+* Moved the Nutrition entry out of the main sticky route navigation.
+* Added a separate Nutrition Plan shortcut near the top hero area.
+* Kept the route navigation focused on Progress, Mon-Fri, Saturday, Sunday, Gym Plan, and Rules.
+
+== v1.0.10 - 23 Jun 2026
+
+* Prepared the standalone nutrition page release files.
+* Updated the main app footer and service worker version.
+
+== v1.0.9 - 23 Jun 2026
+
+* Moved Nutrition out of the main page into a standalone nutrition.html page.
+* Updated the main navigation Nutrition link to open nutrition.html in a new tab.
+* Added nutrition.html to the service worker cache.
+
+== v1.0.8 - 23 Jun 2026
+
+* Replaced Tuesday Scapular Pull + Bandless Rows with no-equipment Prone Y-T-W Raise.
+* Removed the old Inverted Row GIF mapping from the Tuesday warm up.
+
+== v1.0.7 - 23 Jun 2026
+
+* Added duration labels to Saturday and Sunday route timeline items.
+
+== v1.0.6 - 23 Jun 2026
+
+* Added Nutrition navigation tab.
+* Added Nutrition section with protein, carb, hydration, and better clothes fit guidance.
+* Recommended GitHub repository name: v-shape-100-body-route.
+
+== v1.0.5 - 23 Jun 2026
+
+* Renamed the app experience to "V-Shape 100 Body Route".
+* Added duration labels to the Mon-Fri daily route timeline.
+* Removed Open GIF / Form buttons from Wednesday swimming cards.
+* Added this VERSION_LOG.rdoc file.
+
+== v1.0.4 - 23 Jun 2026
+
+* Updated Bird Dog GIF to the 2022 FitnessProgramer source.
+
+== v1.0.3 - 23 Jun 2026
+
+* Replaced Plank Breathing with Dead Bug for Sunday recovery.
+* Updated Sunday recovery GIF mapping.
+
+== v1.0.2 - 23 Jun 2026
+
+* Removed swimming GIF dropdowns.
+* Updated Saturday Easy Walk and Chest + Lat Stretch GIF links.
+* Changed Sunday recovery to Bird Dog and Dead Bug direction.
+
+== v1.0.1 - 23 Jun 2026
+
+* Moved version label to the footer.
+* Changed Mon Gym, Tue Gym, Wed Swim, Thu Gym, and Fri Gym chips to white.
+* Added recovery GIF dropdowns for Saturday and Sunday.
+
+== v1.0.0 - 23 Jun 2026
+
+* First GitHub-ready release.
+* Added 100-day progress from 22 Jun 2026.
+* Added daily route sections, gym plan, rules, PWA manifest, icons, and GIF dropdown support.

@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080c12">
+  <meta name="description" content="V-Shape 100 Body Route nutrition page">
+  <title>Nutrition - V-Shape 100 Body Route</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080c12;
+      --panel: #111823;
+      --text: #edf5ff;
+      --muted: #9caec2;
+      --green: #30d980;
+      --cyan: #20d5f2;
+      --yellow: #ffd85a;
+      --purple: #b98cff;
+      --red: #ff7575;
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(32, 213, 242, 0.18), transparent 34rem),
+        linear-gradient(180deg, #080c12 0%, #0b1018 45%, #070a0f 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; }
+
+    .app {
+      width: min(100%, 480px);
+      margin: 0 auto;
+      padding: 18px 14px 34px;
+    }
+
+    .hero { padding: 26px 4px 18px; }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.45rem, 15vw, 4.3rem);
+      line-height: 0.92;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      gap: 8px;
+      margin: 0 -14px 18px;
+      padding: 10px 14px;
+      overflow-x: auto;
+      background: rgba(8, 12, 18, 0.86);
+      border-block: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      scrollbar-width: none;
+    }
+
+    .nav::-webkit-scrollbar { display: none; }
+
+    .nav a {
+      flex: 0 0 auto;
+      min-height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #d9e9f8;
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    section {
+      margin-top: 20px;
+      scroll-margin-top: 72px;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      padding: 0 2px;
+      font-size: 1.28rem;
+      letter-spacing: 0;
+    }
+
+    .card,
+    .tracker {
+      padding: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: 4px solid var(--cyan);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(21, 30, 43, 0.96), rgba(12, 17, 25, 0.96));
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .card + .card { margin-top: 10px; }
+
+    .card strong,
+    .card span { display: block; }
+
+    .card strong {
+      color: #edf5ff;
+      font-size: 0.98rem;
+    }
+
+    .card span,
+    .card p,
+    .tracker p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .card p,
+    .tracker p { margin: 6px 0 0; }
+
+    .meal-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .meal-card {
+      border-left-color: var(--green);
+    }
+
+    .meal-card:nth-child(2) { border-left-color: var(--yellow); }
+    .meal-card:nth-child(3) { border-left-color: var(--cyan); }
+    .meal-card:nth-child(4) { border-left-color: var(--purple); }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 1000;
+      line-height: 1;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.34);
+    }
+
+    .tag.protein { background: var(--green); }
+    .tag.carb { background: var(--yellow); }
+    .tag.habit { background: var(--cyan); }
+    .tag.recovery { background: var(--purple); }
+    .tag.limit { background: var(--red); }
+
+    .tracker-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .metric {
+      min-width: 82px;
+      border: 1px solid rgba(32, 213, 242, 0.28);
+      border-radius: 14px;
+      padding: 10px;
+      background: rgba(32, 213, 242, 0.08);
+      text-align: center;
+    }
+
+    .metric b {
+      display: block;
+      color: #edf5ff;
+      font-size: 1.45rem;
+      line-height: 1;
+    }
+
+    .metric small {
+      display: block;
+      margin-top: 5px;
+      color: #a8c6d2;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .range-row {
+      margin-top: 14px;
+    }
+
+    .range-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: #d7e9f7;
+      font-size: 0.86rem;
+      font-weight: 850;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin: 12px 0 0;
+      accent-color: var(--cyan);
+    }
+
+    .tracker-output {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .output-box {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 11px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .output-box strong {
+      display: block;
+      color: #edf5ff;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .output-box span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+
+    .note {
+      border-left-color: var(--yellow);
+    }
+
+    .week-note {
+      border-left-color: var(--green);
+    }
+
+    .shop-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .shop-card {
+      border-left-color: var(--purple);
+    }
+
+    .plan-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .day-plan {
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: 4px solid var(--cyan);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(21, 30, 43, 0.96), rgba(12, 17, 25, 0.96));
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.24);
+    }
+
+    .day-plan h3 {
+      margin: 0 0 10px;
+      color: #edf5ff;
+      font-size: 1rem;
+      letter-spacing: 0;
+    }
+
+    .meal-line {
+      display: grid;
+      grid-template-columns: 82px minmax(0, 1fr);
+      gap: 10px;
+      padding: 9px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .meal-line:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .meal-line b {
+      color: #dff8ff;
+      font-size: 0.78rem;
+      line-height: 1.3;
+    }
+
+    .meal-line span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .meal-line em {
+      display: block;
+      margin-top: 3px;
+      color: #c8d7e6;
+      font-style: normal;
+    }
+
+    footer {
+      margin-top: 26px;
+      color: #6f8193;
+      font-size: 0.78rem;
+      text-align: center;
+    }
+
+    .app-version {
+      display: inline-flex;
+      width: fit-content;
+      margin: 8px auto 0;
+      border: 1px solid rgba(32, 213, 242, 0.26);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(32, 213, 242, 0.08);
+      color: #baf7ff;
+      font-size: 0.76rem;
+      font-weight: 850;
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <p class="eyebrow">Nutrition</p>
+      <h1>Fuel The Route</h1>
+      <p>Simple food rules for fat loss, better clothes fit, and enough protein to support the V-Shape 100 training plan. 簡單飲食規則：減脂、衣服更合身，同時保留訓練需要的蛋白質和能量。</p>
+    </header>
+
+    <nav class="nav" aria-label="Nutrition sections">
+      <a href="./index.html">Back to Plan</a>
+      <a href="#tracker">Tracker</a>
+      <a href="#meals">Meals</a>
+      <a href="#weekly">Weekly Plan</a>
+      <a href="#training">Training Day</a>
+      <a href="#rules">Rules</a>
+    </nav>
+
+    <section id="tracker" aria-labelledby="tracker-title">
+      <h2 class="section-title" id="tracker-title">Body Tracker</h2>
+      <div class="tracker">
+        <div class="tracker-top">
+          <div>
+            <strong>Height 168 cm · Weight <span id="weightText">77</span> kg</strong>
+            <p>Move the bar when your weight changes. 體重下降或上升時，自己拉這個 bar 更新。</p>
+          </div>
+          <div class="metric">
+            <b id="bmiValue">27.3</b>
+            <small>BMI</small>
+          </div>
+        </div>
+        <div class="range-row">
+          <div class="range-label"><span>60 kg</span><span>100 kg</span></div>
+          <input id="weightRange" type="range" min="60" max="100" step="0.5" value="77" aria-label="Body weight in kilograms">
+        </div>
+        <div class="tracker-output">
+          <div class="output-box">
+            <strong id="bmiLabel">Overweight</strong>
+            <span>BMI range / BMI 分類</span>
+          </div>
+          <div class="output-box">
+            <strong id="bodyFatValue">24-30%</strong>
+            <span>Body fat estimate / 體脂估算</span>
+          </div>
+        </div>
+        <p>This body fat number is only a rough estimate from BMI, not a medical scan. 體脂只是粗略估算，不是醫療或儀器測量。</p>
+      </div>
+    </section>
+
+    <section id="meals" aria-labelledby="meals-title">
+      <h2 class="section-title" id="meals-title">Daily Meals</h2>
+      <div class="meal-grid">
+        <div class="card meal-card">
+          <strong>Breakfast / 早餐</strong>
+          <span>Protein first: eggs, Greek yogurt, whey, tofu, or chicken. 先吃蛋白質：雞蛋、希臘 yogurt、乳清、豆腐或雞肉。</span>
+          <p>Add one easy carb if work feels low energy: oats, bread, banana, or rice. 如果上班容易沒力，加一份燕麥、麵包、香蕉或飯。</p>
+          <div class="tag-row">
+            <span class="tag protein">Protein</span>
+            <span class="tag habit">Daily</span>
+          </div>
+        </div>
+        <div class="card meal-card">
+          <strong>Lunch / 午餐</strong>
+          <span>Best plate: 1 palm protein, 1 fist carbs, 2 fists vegetables. 最穩：一掌蛋白質、一拳碳水、兩拳菜。</span>
+          <p>Example: chicken rice with less oil, fish + rice, beef noodles with more meat, or tofu + rice. 例子：少油雞飯、魚配飯、牛肉麵加肉、豆腐配飯。</p>
+          <div class="tag-row">
+            <span class="tag protein">Protein</span>
+            <span class="tag carb">Carbs</span>
+          </div>
+        </div>
+        <div class="card meal-card">
+          <strong>Dinner / 晚餐</strong>
+          <span>Eat 60-90 min before training so your stomach is not too full. 訓練前 60-90 分鐘吃，胃不要太撐。</span>
+          <p>Keep it simple: rice + chicken, noodles + eggs, potatoes + fish, or oats + whey. 簡單就好：飯配雞、麵配蛋、馬鈴薯配魚、燕麥配乳清。</p>
+          <div class="tag-row">
+            <span class="tag carb">Energy</span>
+            <span class="tag recovery">Digest</span>
+          </div>
+        </div>
+        <div class="card meal-card">
+          <strong>Night / 晚上</strong>
+          <span>After training, do not turn Netflix time into snack time. 訓練後不要把 Netflix 變成零食時間。</span>
+          <p>If hungry: whey, yogurt, eggs, tofu, or fruit. 如果真的餓：乳清、yogurt、雞蛋、豆腐或水果。</p>
+          <div class="tag-row">
+            <span class="tag limit">Control</span>
+            <span class="tag recovery">Recovery</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="weekly" aria-labelledby="weekly-title">
+      <h2 class="section-title" id="weekly-title">Weekly Meal Plan</h2>
+      <div class="card week-note">
+        <strong>Fixed 100-Day Meal Base / 固定 100 天飲食模板</strong>
+        <span>Repeat this weekly during the 100-day cut. Keep the meals simple first; add a little Korean flavor only when it makes the meal easier to enjoy. 100 天減脂期間每週重複這個模板；先保持簡單，想換口味時才加少量韓式味道。</span>
+        <p>Office lunch is no-cook, easy to pack, and simple to eat. Tuna stays once per week; pulled chicken stays twice per week. Office 午餐不需要煮、容易帶、容易吃；tuna 每週 1 天，雞肉絲罐頭每週 2 天。</p>
+        <div class="tag-row">
+          <span class="tag protein">High Protein</span>
+          <span class="tag carb">Controlled Carbs</span>
+          <span class="tag habit">Office Friendly</span>
+        </div>
+      </div>
+
+      <div class="shop-grid" aria-label="AEON grocery guide">
+        <div class="card shop-card">
+          <strong>AEON Grocery Picks / AEON 採購重點</strong>
+          <span>Look in Fresh Foods for chicken breast, eggs, vegetables, fruits, and mushrooms. 在 Fresh Foods 找雞胸、雞蛋、蔬菜、水果和菇類。</span>
+          <p>Buy chicken breast or chicken fillet, eggs, broccoli, cabbage, cucumber, lettuce or romaine, mushrooms, apples, bananas, and sweet potatoes. 買雞胸或雞柳、雞蛋、西蘭花、包菜、黃瓜、生菜或羅馬生菜、菇、蘋果、香蕉和番薯。</p>
+        </div>
+        <div class="card shop-card" style="border-left-color: var(--cyan);">
+          <strong>Chilled + Grocery / 冷藏與乾貨</strong>
+          <span>Look for tofu, plain Greek yogurt, low fat milk, unsweetened soy milk, whole wheat bread, rice, tuna in water, and pulled chicken. 找豆腐、原味希臘酸奶、低脂牛奶、無糖豆奶、全麥麵包、米、水浸 tuna 和雞肉絲罐頭。</span>
+          <p>Choose water-packed tuna, plain yogurt, low sugar drinks, and basic rice. Avoid buying extra sauces or snack foods. 選水浸 tuna、原味 yogurt、低糖飲料和普通米；不要順手買太多醬料和零食。</p>
+        </div>
+        <div class="card shop-card" style="border-left-color: var(--yellow);">
+          <strong>Seasoning Limit / 調味限制</strong>
+          <span>Use light soy, black pepper, garlic, and only a small amount of gochujang or sesame oil. 用生抽、黑胡椒、蒜；韓式辣醬和麻油只放少量。</span>
+          <p>If a canned item is not available, replace it with cooked chicken breast from home prep. 如果罐頭買不到，就用自己預先煮好的雞胸代替。</p>
+        </div>
+      </div>
+
+      <div class="plan-list">
+        <article class="day-plan">
+          <h3>Monday / 星期一</h3>
+          <div class="meal-line"><b>Breakfast<br>早餐</b><span>2 eggs + whole wheat bread + unsweetened soy milk.<em>2 粒蛋 + 全麥麵包 + 無糖豆奶。</em></span></div>
+          <div class="meal-line"><b>Lunch<br>午餐</b><span>Office: pulled chicken sandwich with lettuce and cucumber + apple.<em>Office：雞肉絲三文治，加生菜黃瓜 + 蘋果。</em></span></div>
+          <div class="meal-line"><b>Dinner<br>晚餐</b><span>Air fryer chicken breast + 70g raw rice cooked + broccoli.<em>氣炸雞胸 + 70g 生米煮飯 + 西蘭花。</em></span></div>
+          <div class="meal-line"><b>Snack<br>零食</b><span>Greek yogurt or zero sugar jelly.<em>希臘酸奶或零糖果凍。</em></span></div>
+        </article>
+
+        <article class="day-plan">
+          <h3>Tuesday / 星期二</h3>
+          <div class="meal-line"><b>Breakfast<br>早餐</b><span>Sweet potato + 2 eggs.<em>番薯 + 2 粒蛋。</em></span></div>
+          <div class="meal-line"><b>Lunch<br>午餐</b><span>Office: cooked chicken breast lettuce wrap + banana.<em>Office：預先煮好的雞胸生菜卷 + 香蕉。</em></span></div>
+          <div class="meal-line"><b>Dinner<br>晚餐</b><span>Lean pork mince + cabbage stir-fry, light soy and black pepper, with 70g raw rice if needed.<em>瘦豬肉碎炒包菜，少量生抽黑胡椒；需要碳水就配 70g 生米煮飯。</em></span></div>
+          <div class="meal-line"><b>Snack<br>零食</b><span>Low fat milk or apple.<em>低脂牛奶或蘋果。</em></span></div>
+        </article>
+
+        <article class="day-plan">
+          <h3>Wednesday / 星期三</h3>
+          <div class="meal-line"><b>Breakfast<br>早餐</b><span>Greek yogurt + banana.<em>希臘酸奶 + 香蕉。</em></span></div>
+          <div class="meal-line"><b>Lunch<br>午餐</b><span>Office: tuna in water sandwich with cucumber and lettuce. Tuna day only.<em>Office：水浸金槍魚三文治，加黃瓜生菜；本週唯一 tuna day。</em></span></div>
+          <div class="meal-line"><b>Dinner<br>晚餐</b><span>Tofu + mushroom + cabbage, small gochujang if wanted, with 70g raw rice.<em>豆腐 + 菇 + 包菜，可加少量韓式辣醬，配 70g 生米煮飯。</em></span></div>
+          <div class="meal-line"><b>Snack<br>零食</b><span>Unsweetened soy milk or konjac jelly.<em>無糖豆奶或蒟蒻果凍。</em></span></div>
+        </article>
+
+        <article class="day-plan">
+          <h3>Thursday / 星期四</h3>
+          <div class="meal-line"><b>Breakfast<br>早餐</b><span>2 eggs + whole wheat bread + black coffee or water.<em>2 粒蛋 + 全麥麵包 + 黑咖啡或水。</em></span></div>
+          <div class="meal-line"><b>Lunch<br>午餐</b><span>Office: pulled chicken sandwich + cucumber + soy milk.<em>Office：雞肉絲三文治 + 黃瓜 + 無糖豆奶。</em></span></div>
+          <div class="meal-line"><b>Dinner<br>晚餐</b><span>Air fryer chicken breast + sweet potato + broccoli.<em>氣炸雞胸 + 番薯 + 西蘭花。</em></span></div>
+          <div class="meal-line"><b>Snack<br>零食</b><span>Greek yogurt if protein is low.<em>蛋白質不夠就吃希臘酸奶。</em></span></div>
+        </article>
+
+        <article class="day-plan">
+          <h3>Friday / 星期五</h3>
+          <div class="meal-line"><b>Breakfast<br>早餐</b><span>Sweet potato + eggs or Greek yogurt + apple.<em>番薯 + 蛋，或希臘酸奶 + 蘋果。</em></span></div>
+          <div class="meal-line"><b>Lunch<br>午餐</b><span>Office: chicken breast sandwich or lettuce wrap + banana.<em>Office：雞胸三文治或生菜卷 + 香蕉。</em></span></div>
+          <div class="meal-line"><b>Dinner<br>晚餐</b><span>Chicken breast lettuce wrap with cucumber, small sesame oil only if needed.<em>雞胸生菜卷加黃瓜，需要才放很少麻油。</em></span></div>
+          <div class="meal-line"><b>Snack<br>零食</b><span>Zero sugar jelly.<em>零糖果凍。</em></span></div>
+        </article>
+
+        <article class="day-plan">
+          <h3>Saturday / 星期六</h3>
+          <div class="meal-line"><b>Breakfast<br>早餐</b><span>2 eggs + whole wheat bread + soy milk.<em>2 粒蛋 + 全麥麵包 + 無糖豆奶。</em></span></div>
+          <div class="meal-line"><b>Lunch<br>午餐</b><span>Simple home lunch: chicken breast + cabbage + sweet potato.<em>家裡簡單吃：雞胸 + 包菜 + 番薯。</em></span></div>
+          <div class="meal-line"><b>Dinner<br>晚餐</b><span>Lean pork mince + tofu + mushroom, light soy, no heavy oil.<em>瘦豬肉碎 + 豆腐 + 菇，少量生抽，不重油。</em></span></div>
+          <div class="meal-line"><b>Snack<br>零食</b><span>Apple or low fat milk.<em>蘋果或低脂牛奶。</em></span></div>
+        </article>
+
+        <article class="day-plan">
+          <h3>Sunday / 星期日</h3>
+          <div class="meal-line"><b>Breakfast<br>早餐</b><span>Greek yogurt + fruit, or eggs + bread.<em>希臘酸奶 + 水果，或雞蛋 + 麵包。</em></span></div>
+          <div class="meal-line"><b>Lunch<br>午餐</b><span>Tofu mushroom rice bowl with cucumber on the side.<em>豆腐菇類飯碗，旁邊加黃瓜。</em></span></div>
+          <div class="meal-line"><b>Dinner<br>晚餐</b><span>Air fryer chicken breast + broccoli + 70g raw rice, then prep extra chicken for office lunches.<em>氣炸雞胸 + 西蘭花 + 70g 生米煮飯，順便預備 office 午餐雞胸。</em></span></div>
+          <div class="meal-line"><b>Snack<br>零食</b><span>Konjac jelly or soy milk.<em>蒟蒻果凍或無糖豆奶。</em></span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="training" aria-labelledby="training-title">
+      <h2 class="section-title" id="training-title">Training Day</h2>
+      <div class="card" style="border-left-color: var(--green);">
+        <strong>Before Training / 訓練前</strong>
+        <span>Do not train empty if you feel weak. 會沒力就不要空腹練。</span>
+        <p>Small option: banana + whey, bread + eggs, or rice + lean meat. 小份選擇：香蕉加乳清、麵包加蛋、飯加瘦肉。</p>
+      </div>
+      <div class="card">
+        <strong>After Training / 訓練後</strong>
+        <span>Hydrate first, then check total protein for the day. 先補水，再看今天蛋白質夠不夠。</span>
+        <p>You do not need a huge late meal. You need repeatable recovery. 不需要很大份宵夜，需要的是每天可重複的恢復。</p>
+      </div>
+      <div class="card note">
+        <strong>Simple Target / 簡單目標</strong>
+        <span>For 77 kg, aim roughly 120-150 g protein per day if digestion is ok. 77kg 可以先抓每天約 120-150g 蛋白質，腸胃可以接受就好。</span>
+        <p>When weight drops, keep protein steady and reduce snacks or oily food first. 體重下降時蛋白質保持，先減零食和油的份量。</p>
+      </div>
+    </section>
+
+    <section id="rules" aria-labelledby="rules-title">
+      <h2 class="section-title" id="rules-title">Nutrition Rules</h2>
+      <div class="card" style="border-left-color: var(--purple);">
+        <strong>80% Repeatable / 80% 可重複</strong>
+        <span>Do not chase perfect dieting. Build meals you can repeat on work days. 不用追求完美飲食，先建立上班日能重複的吃法。</span>
+      </div>
+      <div class="card">
+        <strong>Drink Calories Down / 少喝熱量</strong>
+        <span>Reduce milk tea, soda, sweet coffee, and alcohol first. 先減奶茶、汽水、甜咖啡和酒。</span>
+      </div>
+      <div class="card" style="border-left-color: var(--yellow);">
+        <strong>Adjust Slowly / 慢慢調整</strong>
+        <span>If weight does not move for 2 weeks, reduce one small carb or snack portion. 兩星期沒變化，就少一小份碳水或零食。</span>
+      </div>
+    </section>
+
+    <footer>
+      Nutrition page for V-Shape 100 Body Route
+      <span class="app-version">Version v1.5 · Updated 23 Jun 2026</span>
+    </footer>
+  </main>
+
+  <script>
+    const heightM = 1.68;
+    const weightRange = document.getElementById("weightRange");
+    const weightText = document.getElementById("weightText");
+    const bmiValue = document.getElementById("bmiValue");
+    const bmiLabel = document.getElementById("bmiLabel");
+    const bodyFatValue = document.getElementById("bodyFatValue");
+    const savedWeight = localStorage.getItem("vshapeWeightKg");
+
+    if (savedWeight) {
+      weightRange.value = savedWeight;
+    }
+
+    function classifyBmi(bmi) {
+      if (bmi < 18.5) return "Underweight";
+      if (bmi < 23) return "Healthy";
+      if (bmi < 27.5) return "Overweight";
+      return "High";
+    }
+
+    function estimateBodyFat(bmi) {
+      if (bmi < 23) return "16-22%";
+      if (bmi < 25) return "20-26%";
+      if (bmi < 27.5) return "24-30%";
+      if (bmi < 30) return "28-34%";
+      return "32%+";
+    }
+
+    function updateTracker() {
+      const weight = Number(weightRange.value);
+      const bmi = weight / (heightM * heightM);
+      weightText.textContent = weight.toFixed(weight % 1 ? 1 : 0);
+      bmiValue.textContent = bmi.toFixed(1);
+      bmiLabel.textContent = classifyBmi(bmi);
+      bodyFatValue.textContent = estimateBodyFat(bmi);
+      localStorage.setItem("vshapeWeightKg", weightRange.value);
+    }
+
+    weightRange.addEventListener("input", updateTracker);
+    updateTracker();
+  </script>
+</body>
+</html>

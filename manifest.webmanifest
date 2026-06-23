@@ -1,7 +1,7 @@
 {
-  "name": "V-Shape 100 - Training & Routine Plan",
+  "name": "V-Shape 100 Body Route",
   "short_name": "V-Shape 100",
-  "description": "A mobile-first 100-day workout and daily routine plan for shoulders, back, chest, abs, and fat loss.",
+  "description": "A mobile-first 100-day body route for training, daily routine, recovery, and fat loss.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

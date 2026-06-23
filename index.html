@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#080c12">
-  <meta name="description" content="V-Shape 100 - 100-Day Training & Routine Plan">
-  <title>V-Shape 100 - Training & Routine Plan</title>
+  <meta name="description" content="V-Shape 100 Body Route - 100-Day Training & Routine Plan">
+  <title>V-Shape 100 Body Route</title>
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icons/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="./icons/icon-192.png">
@@ -95,6 +95,29 @@
       color: #baf7ff;
       font-size: 0.76rem;
       font-weight: 850;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .hero-link {
+      display: inline-flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(32, 213, 242, 0.4);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(32, 213, 242, 0.12);
+      color: #c7fbff;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 900;
+      white-space: nowrap;
     }
 
     footer .app-version {
@@ -212,6 +235,13 @@
       white-space: nowrap;
     }
 
+    .nav a.external-page {
+      margin-left: 10px;
+      border-color: rgba(32, 213, 242, 0.38);
+      background: rgba(32, 213, 242, 0.1);
+      color: #bbf9ff;
+    }
+
     section {
       scroll-margin-top: 72px;
       margin-top: 20px;
@@ -296,6 +326,15 @@
       font-size: 0.78rem;
       font-weight: 900;
       line-height: 1.25;
+    }
+
+    .timeline-time small {
+      display: block;
+      margin-top: 3px;
+      color: #f8fbff;
+      font-size: 0.68rem;
+      font-weight: 900;
+      opacity: 0.88;
     }
 
     .timeline-main strong {
@@ -635,9 +674,12 @@
 <body>
   <main class="app">
     <header class="hero">
-      <p class="eyebrow">Mobile workout plan</p>
+      <p class="eyebrow">Body Route</p>
       <h1>V-Shape 100</h1>
       <p>100-Day Training & Routine Plan for shoulder width, V-shape back, chest shape, abs foundation, fat loss, and better clothes fit.</p>
+      <div class="hero-actions" aria-label="Top shortcuts">
+        <a class="hero-link" href="./nutrition.html" target="_blank" rel="noopener noreferrer">Nutrition Plan ↗</a>
+      </div>
     </header>
 
     <section id="progress" class="progress-card" aria-labelledby="progress-title">
@@ -666,12 +708,12 @@
       <div class="route-card">
         <p class="route-note">Weekday rhythm for work, food, training, recovery, and sleep. 平日節奏：上班、吃飯、訓練、恢復、睡眠。</p>
         <div class="timeline">
-          <div class="timeline-item"><div class="timeline-time">07:30-08:00</div><div class="timeline-main"><strong>Wake up / shower / to work</strong><span>起床 / 洗澡 / 去上班</span></div></div>
-          <div class="timeline-item"><div class="timeline-time">08:00-17:00</div><div class="timeline-main"><strong>Work</strong><span>上班</span></div></div>
-          <div class="timeline-item"><div class="timeline-time">17:00-18:15</div><div class="timeline-main"><strong>Back home / shower / standby</strong><span>回家 / 洗澡 / 準備</span></div></div>
-          <div class="timeline-item"><div class="timeline-time">18:15-19:15</div><div class="timeline-main"><strong>Dinner + rest + digest</strong><span>晚餐 + 休息 + 消化</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">07:30-08:00<small>30 min</small></div><div class="timeline-main"><strong>Wake up / shower / to work</strong><span>起床 / 洗澡 / 去上班</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">08:00-17:00<small>9 hrs</small></div><div class="timeline-main"><strong>Work</strong><span>上班</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">17:00-18:15<small>1 hr 15 min</small></div><div class="timeline-main"><strong>Back home / shower / standby</strong><span>回家 / 洗澡 / 準備</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">18:15-19:15<small>1 hr</small></div><div class="timeline-main"><strong>Dinner + rest + digest</strong><span>晚餐 + 休息 + 消化</span></div></div>
           <div class="timeline-item">
-            <div class="timeline-time">19:15-20:30</div>
+            <div class="timeline-time">19:15-20:30<small>1 hr 15 min</small></div>
             <div class="timeline-main">
               <strong>Training</strong>
               <span>訓練時間</span>
@@ -684,11 +726,11 @@
               </div>
             </div>
           </div>
-          <div class="timeline-item"><div class="timeline-time">20:30-21:00</div><div class="timeline-main"><strong>Cool down / shower</strong><span>放鬆 / 洗澡</span></div></div>
-          <div class="timeline-item"><div class="timeline-time">21:00-21:30</div><div class="timeline-main"><strong>Reading</strong><span>閱讀</span></div></div>
-          <div class="timeline-item"><div class="timeline-time">21:30-00:00</div><div class="timeline-main"><strong>Netflix / drama</strong><span>Netflix / 追劇</span></div></div>
-          <div class="timeline-item"><div class="timeline-time">00:00-00:30</div><div class="timeline-main"><strong>Wind down</strong><span>放鬆準備睡覺</span></div></div>
-          <div class="timeline-item"><div class="timeline-time">00:30-07:30</div><div class="timeline-main"><strong>Sleep</strong><span>睡眠</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">20:30-21:00<small>30 min</small></div><div class="timeline-main"><strong>Cool down / shower</strong><span>放鬆 / 洗澡</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">21:00-21:30<small>30 min</small></div><div class="timeline-main"><strong>Reading</strong><span>閱讀</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">21:30-00:00<small>2 hrs 30 min</small></div><div class="timeline-main"><strong>Netflix / drama</strong><span>Netflix / 追劇</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">00:00-00:30<small>30 min</small></div><div class="timeline-main"><strong>Wind down</strong><span>放鬆準備睡覺</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">00:30-07:30<small>7 hrs</small></div><div class="timeline-main"><strong>Sleep</strong><span>睡眠</span></div></div>
         </div>
       </div>
     </section>
@@ -698,11 +740,11 @@
       <div class="route-card" style="border-left-color: var(--yellow);">
         <p class="route-note">Keep Saturday lighter after work. 星期六下班後放鬆一點，讓身體恢復。</p>
         <div class="timeline">
-          <div class="timeline-item"><div class="timeline-time">07:30-08:00</div><div class="timeline-main"><strong>Wake up / shower / to work</strong><span>起床 / 洗澡 / 去上班</span></div></div>
-          <div class="timeline-item"><div class="timeline-time">08:00-17:00</div><div class="timeline-main"><strong>Work</strong><span>上班</span></div></div>
-          <div class="timeline-item"><div class="timeline-time">After Work</div><div class="timeline-main"><strong>Dinner / relax / free time</strong><span>晚餐 / 放鬆 / 自由時間</span></div></div>
-          <div class="timeline-item"><div class="timeline-time">Night</div><div class="timeline-main"><strong>Rest / Netflix / outing</strong><span>休息 / Netflix / 出門</span></div></div>
-          <div class="timeline-item"><div class="timeline-time">01:00-02:00</div><div class="timeline-main"><strong>Sleep later</strong><span>晚一點睡</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">07:30-08:00<small>30 min</small></div><div class="timeline-main"><strong>Wake up / shower / to work</strong><span>起床 / 洗澡 / 去上班</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">08:00-17:00<small>9 hrs</small></div><div class="timeline-main"><strong>Work</strong><span>上班</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">After Work<small>2-3 hrs</small></div><div class="timeline-main"><strong>Dinner / relax / free time</strong><span>晚餐 / 放鬆 / 自由時間</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">Night<small>Flexible</small></div><div class="timeline-main"><strong>Rest / Netflix / outing</strong><span>休息 / Netflix / 出門</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">01:00-02:00<small>sleep window</small></div><div class="timeline-main"><strong>Sleep later</strong><span>晚一點睡</span></div></div>
         </div>
       </div>
     </section>
@@ -712,11 +754,11 @@
       <div class="route-card" style="border-left-color: var(--red);">
         <p class="route-note">Recovery and reset day before the weekday routine starts again. 恢復和整理日，準備回到平日節奏。</p>
         <div class="timeline">
-          <div class="timeline-item"><div class="timeline-time">Morning</div><div class="timeline-main"><strong>Wake up naturally / slow morning</strong><span>自然醒 / 慢慢開始早上</span></div></div>
-          <div class="timeline-item"><div class="timeline-time">Day Time</div><div class="timeline-main"><strong>Grocery / meal prep / laundry / clean room</strong><span>買菜 / 備餐 / 洗衣 / 收拾房間</span></div></div>
-          <div class="timeline-item"><div class="timeline-time">Evening</div><div class="timeline-main"><strong>Stretching / mobility / light walk</strong><span>伸展 / 活動度 / 輕鬆走路</span></div></div>
-          <div class="timeline-item"><div class="timeline-time">Night</div><div class="timeline-main"><strong>Reading 30 min + Netflix</strong><span>閱讀 30 分鐘 + Netflix</span></div></div>
-          <div class="timeline-item"><div class="timeline-time">00:30</div><div class="timeline-main"><strong>Sleep back to weekday time</strong><span>睡回平日時間</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">Morning<small>1-2 hrs</small></div><div class="timeline-main"><strong>Wake up naturally / slow morning</strong><span>自然醒 / 慢慢開始早上</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">Day Time<small>2-4 hrs</small></div><div class="timeline-main"><strong>Grocery / meal prep / laundry / clean room</strong><span>買菜 / 備餐 / 洗衣 / 收拾房間</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">Evening<small>20-40 min</small></div><div class="timeline-main"><strong>Stretching / mobility / light walk</strong><span>伸展 / 活動度 / 輕鬆走路</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">Night<small>1-2 hrs</small></div><div class="timeline-main"><strong>Reading 30 min + Netflix</strong><span>閱讀 30 分鐘 + Netflix</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">00:30<small>sleep target</small></div><div class="timeline-main"><strong>Sleep back to weekday time</strong><span>睡回平日時間</span></div></div>
         </div>
       </div>
     </section>
@@ -798,10 +840,10 @@
             <article class="exercise">
               <div class="num">1</div>
               <div class="exercise-main">
-                <div class="exercise-head"><h5>Scapular Pull + Bandless Rows</h5><span class="tag warm">Warm</span></div>
-                <p class="meta">2 rounds · 12 reps</p>
-                <p class="desc">Purpose: feel shoulder blades before pulling. 目的：先找到背部發力。</p>
-                <a class="form-btn" href="https://fitnessprogramer.com/exercise/inverted-row/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+                <div class="exercise-head"><h5>Prone Y-T-W Raise</h5><span class="tag warm">Warm</span></div>
+                <p class="meta">2 rounds · 6-8 reps each shape</p>
+                <p class="desc">Purpose: activate shoulder blades, rear delts, and upper back without equipment. 目的：不用器材啟動肩胛、後肩和上背。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/?s=prone+y+raise" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
               </div>
             </article>
           </div>
@@ -864,7 +906,6 @@
                 <div class="exercise-head"><h5>Easy Warm Laps</h5><span class="tag swim">Swim</span></div>
                 <p class="meta">8-10 min</p>
                 <p class="desc">Purpose: raise heart rate without rushing. 目的：慢慢進入狀態。</p>
-                <a class="form-btn" href="https://fitnessprogramer.com/?s=swimming" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
               </div>
             </article>
             <article class="exercise">
@@ -873,7 +914,6 @@
                 <div class="exercise-head"><h5>Moderate Continuous Swim</h5><span class="tag swim">Swim</span></div>
                 <p class="meta">20-25 min</p>
                 <p class="desc">Purpose: burn fat and improve breathing rhythm. 目的：燃脂與提升心肺。</p>
-                <a class="form-btn" href="https://fitnessprogramer.com/?s=swimming+cardio" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
               </div>
             </article>
             <article class="exercise">
@@ -882,7 +922,6 @@
                 <div class="exercise-head"><h5>Cool Down Laps</h5><span class="tag swim">Swim</span></div>
                 <p class="meta">5-8 min</p>
                 <p class="desc">Purpose: finish relaxed, not exhausted. 目的：放鬆收尾。</p>
-                <a class="form-btn" href="https://fitnessprogramer.com/?s=swimming+cool+down" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
               </div>
             </article>
           </div>
@@ -1131,7 +1170,7 @@
 
     <footer>
       Static HTML/PWA · FitnessProgramer buttons open in a new tab
-      <span class="app-version">Version v1.0.4 · Updated 23 Jun 2026</span>
+      <span class="app-version">Version v1.5 · Updated 23 Jun 2026</span>
     </footer>
   </main>
 
@@ -1170,7 +1209,6 @@
         "Dumbbell Shoulder Press": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shoulder-Press.gif",
         "ES3000 Cable Lateral Raise": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Cable-Lateral-Raise.gif",
         "ES3000 Lat Pulldown": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif",
-        "Scapular Pull + Bandless Rows": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Inverted-Row.gif",
         "Chest Supported Dumbbell Row": "https://fitnessprogramer.com/wp-content/uploads/2021/02/45-Degree-Incline-Row.gif",
         "Dumbbell Pullover": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Pullover.gif",
         "ES3000 Cable Biceps Curl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/cable-curl.gif",

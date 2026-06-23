@@ -1,7 +1,9 @@
-const CACHE_NAME = "vshape-100-v1.0.4";
+const CACHE_NAME = "vshape-100-v1.5";
 const ASSETS = [
   "./",
   "./index.html",
+  "./nutrition.html",
+  "./VERSION_LOG.rdoc",
   "./manifest.webmanifest",
   "./icons/favicon.png",
   "./icons/icon-192.png",
