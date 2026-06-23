@@ -1,5 +1,9 @@
 = V-Shape 100 Body Route Version Log
 
+== v1.8 - 24 Jun 2026
+
+* Split AEON grocery and economy rice guide text into separate English and Chinese lines.
+
 == v1.7 - 24 Jun 2026
 
 * Updated Monday to Friday lunches to match the real routine: one pulled chicken can day, one tuna can day, two economy rice days, and one family lunch outside.
