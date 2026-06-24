@@ -1,5 +1,11 @@
 = V-Shape 100 Body Route Version Log
 
+== v1.9 - 24 Jun 2026
+
+* Added a separate desktop interface with wider containers, multi-column schedules, workout cards, and nutrition sections.
+* Kept the original compact phone interface for small screens.
+* Removed the portrait-only PWA orientation so desktop and wider screens can use the responsive layout naturally.
+
 == v1.8 - 24 Jun 2026
 
 * Split AEON grocery and economy rice guide text into separate English and Chinese lines.

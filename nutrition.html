@@ -1,362 +1,425 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#080c12">
+  <meta name="theme-color" content="#1c3faa">
   <meta name="description" content="V-Shape 100 Body Route nutrition page">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <title>Nutrition - V-Shape 100 Body Route</title>
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icons/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="./icons/icon-192.png">
   <style>
-    :root {
-      color-scheme: dark;
-      --bg: #080c12;
-      --panel: #111823;
-      --text: #edf5ff;
-      --muted: #9caec2;
-      --green: #30d980;
-      --cyan: #20d5f2;
-      --yellow: #ffd85a;
-      --purple: #b98cff;
-      --red: #ff7575;
-      --radius: 18px;
-    }
+/* ── Indexy style system: light + dark ── */
+:root {
+  color-scheme: light;
+  --bg: #f0f2f5;
+  --surface: #ffffff;
+  --surface2: #f8f9fb;
+  --border: #e2e6ea;
+  --border-focus: #3b5bdb;
+  --text: #1a1d23;
+  --text-muted: #6b7280;
+  --accent: #1c3faa;
+  --accent-light: #eef1fd;
+  --accent-hover: #162f88;
+  --green: #0f7c3a;
+  --green-light: #e8f7ef;
+  --blue: #1c3faa;
+  --cyan: #0b7285;
+  --purple: #7048e8;
+  --yellow: #f59e0b;
+  --yellow-light: #fffbeb;
+  --red: #c0392b;
+  --red-light: #fdf0ef;
+  --shadow: 0 1px 4px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+  --radius: 10px;
+  --radius-sm: 6px;
+}
 
-    * { box-sizing: border-box; }
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #22263a;
+  --border: #2e3348;
+  --border-focus: #6b8aff;
+  --text: #e8eaf0;
+  --text-muted: #8892a4;
+  --accent: #4f6ef7;
+  --accent-light: #1e2540;
+  --accent-hover: #3d58e0;
+  --green: #22c55e;
+  --green-light: #0f2a1a;
+  --blue: #8fb1ff;
+  --cyan: #20d5f2;
+  --purple: #b98cff;
+  --yellow: #fbbf24;
+  --yellow-light: #271e08;
+  --red: #f87171;
+  --red-light: #2a1212;
+  --shadow: 0 1px 4px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.3);
+}
 
-    html { scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  transition: background 0.2s, color 0.2s;
+}
+a { color: inherit; }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 50% -10%, rgba(32, 213, 242, 0.18), transparent 34rem),
-        linear-gradient(180deg, #080c12 0%, #0b1018 45%, #070a0f 100%);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.5;
-    }
+.page-header {
+  background: var(--accent);
+  color: #fff;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+.page-header .logo {
+  width: 34px;
+  height: 34px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+.page-header .header-text { flex: 1; min-width: 0; }
+.page-header h1 { margin: 0; font-size: 16px; font-weight: 700; letter-spacing: 0.01em; }
+.page-header p { margin: 1px 0 0; font-size: 11px; opacity: 0.72; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dark-toggle {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Inter', sans-serif;
+  flex-shrink: 0;
+}
+.dark-toggle:hover { background: rgba(255,255,255,0.25); }
 
-    a { color: inherit; }
+.app {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  padding: 20px 16px 46px;
+}
+.hero {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+h1 {
+  margin: 0;
+  max-width: none;
+  font-size: clamp(1.9rem, 10vw, 3.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+.hero p {
+  margin: 10px 0 0;
+  max-width: 42rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.hero-link,
+.form-btn {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  background: var(--surface);
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.hero-link:hover,
+.form-btn:hover { background: var(--accent-light); }
 
-    .app {
-      width: min(100%, 480px);
-      margin: 0 auto;
-      padding: 18px 14px 34px;
-    }
+.progress-card,
+.section-card,
+.route-card,
+details.day,
+.rule-card,
+.schedule-card,
+.card,
+.tracker {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: background 0.2s, border-color 0.2s;
+}
+.progress-card {
+  overflow: hidden;
+  margin-bottom: 16px;
+  padding: 18px;
+  border-left: 4px solid var(--accent);
+}
+.progress-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.label {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.day-count { margin-top: 2px; font-size: 2rem; font-weight: 800; line-height: 1; }
+.percent {
+  min-width: 62px;
+  border-radius: 20px;
+  border: 1px solid var(--border-focus);
+  background: var(--accent-light);
+  padding: 7px 10px;
+  color: var(--accent);
+  text-align: center;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+.bar { height: 9px; margin: 15px 0 12px; overflow: hidden; border-radius: 999px; background: var(--surface2); border: 1px solid var(--border); }
+.bar span { display: block; width: 0; height: 100%; border-radius: inherit; background: var(--accent); }
+.motivation { margin: 0; color: var(--text); font-weight: 600; }
 
-    .hero { padding: 26px 4px 18px; }
+.nav {
+  position: sticky;
+  top: 62px;
+  z-index: 20;
+  display: flex;
+  gap: 8px;
+  margin: 0 -16px 18px;
+  padding: 10px 16px;
+  overflow-x: auto;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  border-block: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav a {
+  flex: 0 0 auto;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 7px 11px;
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.nav a:hover, .nav a.external-page { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
 
-    .eyebrow {
-      margin: 0 0 8px;
-      color: var(--cyan);
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+section { scroll-margin-top: 118px; margin-top: 20px; }
+.section-title {
+  margin: 0 0 10px;
+  padding: 0 2px;
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.week-grid { display: grid; gap: 10px; }
+.schedule-card { display: grid; grid-template-columns: 52px 1fr; gap: 12px; padding: 13px; border-left: 4px solid var(--accent); }
+.schedule-card strong { display: block; font-size: 0.96rem; }
+.schedule-card span { display: block; color: var(--text-muted); font-size: 0.87rem; }
+.dow { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 10px; background: var(--accent-light); color: var(--accent); font-size: 0.78rem; font-weight: 800; }
+.route-card { padding: 14px; border-left: 4px solid var(--accent); }
+.route-card + .route-card, .card + .card { margin-top: 10px; }
+.route-note { margin: 0 0 12px; color: var(--text-muted); font-size: 0.9rem; }
+.timeline { display: grid; gap: 9px; }
+.timeline-item { display: grid; grid-template-columns: 86px minmax(0, 1fr); gap: 11px; align-items: start; padding: 11px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface2); }
+.timeline-time { color: var(--accent); font-size: 0.78rem; font-weight: 800; line-height: 1.25; }
+.timeline-time small { display: block; margin-top: 3px; color: var(--text); font-size: 0.68rem; font-weight: 800; opacity: 0.78; }
+.timeline-main strong { display: block; font-size: 0.94rem; line-height: 1.25; }
+.timeline-main span, .timeline-main small { display: block; color: var(--text-muted); font-size: 0.82rem; }
+.training-days { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 
-    h1 {
-      margin: 0;
-      font-size: clamp(2.45rem, 15vw, 4.3rem);
-      line-height: 0.92;
-      letter-spacing: 0;
-    }
+details.day { margin-bottom: 12px; overflow: hidden; border-left: 4px solid var(--accent); }
+details.day[open] summary { border-bottom: 1px solid var(--border); }
+summary { min-height: 62px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; padding: 14px 16px; cursor: pointer; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+summary h3 { margin: 0; font-size: 1.02rem; letter-spacing: 0; }
+summary p { margin: 3px 0 0; color: var(--text-muted); font-size: 0.86rem; }
+.chev { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--border); color: var(--accent); transition: transform 180ms ease; }
+details[open] .chev { transform: rotate(180deg); }
+.day-body { padding: 14px; }
+.category { margin: 4px 0 14px; }
+.category h4 { margin: 0 0 8px; color: var(--text); font-size: 0.9rem; font-weight: 800; }
+.exercise { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; margin-bottom: 9px; padding: 12px; border-radius: var(--radius-sm); background: var(--surface2); border: 1px solid var(--border); }
+.num { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 10px; background: var(--accent-light); color: var(--accent); font-size: 0.8rem; font-weight: 800; }
+.exercise-main { min-width: 0; }
+.exercise-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; min-width: 0; }
+.exercise h5 { margin: 0; min-width: 0; font-size: 0.96rem; line-height: 1.25; letter-spacing: 0; }
+.tag { flex: 0 0 auto; border-radius: 20px; padding: 4px 8px; color: #071018; font-size: 0.68rem; font-weight: 800; line-height: 1; }
+.tag.db { background: var(--green); color:#fff; }
+.tag.es { background: var(--blue); color:#fff; }
+.tag.core { background: var(--purple); color:#fff; }
+.tag.swim { background: var(--cyan); color:#071018; }
+.tag.warm { background: var(--yellow); color:#071018; }
+.meta { margin: 5px 0 0; color: var(--text); font-size: 0.84rem; font-weight: 650; }
+.desc { margin: 4px 0 0; color: var(--text-muted); font-size: 0.82rem; }
+.gif-drop { margin-top: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); overflow: hidden; }
+.gif-drop summary { min-height: 40px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 11px; color: var(--accent); font-size: 0.82rem; font-weight: 800; }
+.gif-drop summary::after { content: "⌄"; color: var(--accent); font-size: 1rem; transition: transform 180ms ease; }
+.gif-drop[open] summary::after { transform: rotate(180deg); }
+.gif-box { padding: 0 10px 11px; }
+.gif-box img { width: 100%; max-height: 280px; object-fit: contain; display: block; border-radius: var(--radius-sm); background: #05080d; }
+.gif-fallback { display: none; margin: 0; padding: 10px; border-radius: var(--radius-sm); background: var(--surface2); color: var(--text-muted); font-size: 0.82rem; }
+.section-card, .rule-card, .card, .tracker { padding: 15px; }
+.section-card p, .rule-card p { margin: 0; color: var(--text-muted); font-size: 0.9rem; }
+.card strong, .card span { display: block; }
+.card strong { color: var(--text); font-size: 0.98rem; }
+.card span, .card p, .tracker p { color: var(--text-muted); }
+.rule-list { display: grid; gap: 10px; margin-top: 10px; }
+.rule-card { border-left: 4px solid var(--green); }
+.rule-card strong { display: block; margin-bottom: 3px; font-size: 0.94rem; color: var(--text); }
+.quick-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.plan-points { display: grid; gap: 10px; margin-top: 12px; }
+.plan-points p { padding-top: 10px; border-top: 1px solid var(--border); }
+.plan-points strong, .plan-points span { display: block; }
+.plan-points strong { color: var(--text); font-size: 0.9rem; }
+.plan-points span { margin-top: 2px; color: var(--text-muted); font-size: 0.86rem; }
 
-    .hero p {
-      margin: 14px 0 0;
-      color: var(--muted);
-      font-size: 0.98rem;
-    }
+/* Nutrition page shared pieces */
+.food-grid, .meal-grid, .grocery-grid { display: grid; gap: 10px; }
+.pill-row, .macro-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.pill, .macro { border-radius: 20px; padding: 5px 9px; background: var(--accent-light); color: var(--accent); font-size: 0.75rem; font-weight: 800; border: 1px solid var(--border-focus); }
+input, select, button { font-family: inherit; }
+input[type="range"] { width: 100%; }
 
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      gap: 8px;
-      margin: 0 -14px 18px;
-      padding: 10px 14px;
-      overflow-x: auto;
-      background: rgba(8, 12, 18, 0.86);
-      border-block: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(16px);
-      scrollbar-width: none;
-    }
+footer { margin-top: 26px; color: var(--text-muted); font-size: 0.78rem; text-align: center; }
+.version-log { max-width: 980px; margin: 18px auto 0; text-align: left; }
+.version-log details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 12px; color: var(--text-muted); box-shadow: var(--shadow); }
+.version-log summary { min-height: auto; display: block; padding: 0; cursor: pointer; font-weight: 700; color: var(--text-muted); }
+.version-log h4 { margin: 10px 0 4px; color: var(--text); font-size: 12px; }
+.version-log ul { margin: 6px 0 10px; padding-left: 18px; line-height: 1.8; }
+.version-log li { margin: 0; }
 
-    .nav::-webkit-scrollbar { display: none; }
+/* Nutrition page detail cards */
+.tracker-top { display: grid; gap: 12px; }
+.tracker-output, .output-box { margin-top: 12px; padding: 12px; border-radius: var(--radius-sm); background: var(--accent-light); border: 1px solid var(--border-focus); color: var(--accent); }
+.metric { display: grid; gap: 2px; }
+.metric strong { color: var(--accent); font-size: 1.35rem; line-height: 1; }
+.metric span { color: var(--text-muted); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+.range-row { display: grid; gap: 6px; margin-top: 12px; }
+.range-label { display: flex; justify-content: space-between; gap: 10px; color: var(--text-muted); font-size: 0.78rem; font-weight: 700; }
+.meal-card, .shop-card, .week-note, .note, .day-plan { border-left: 4px solid var(--accent); }
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.tag.protein { background: var(--green); color: #fff; }
+.tag.carb { background: var(--yellow); color: #071018; }
+.tag.habit { background: var(--accent); color: #fff; }
+.tag.recovery { background: var(--purple); color: #fff; }
+.tag.limit { background: var(--red); color: #fff; }
+.shop-grid, .plan-list { display: grid; gap: 10px; margin-top: 12px; }
+.day-plan { padding: 15px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+.day-plan h3 { margin: 0 0 10px; font-size: 1rem; color: var(--text); }
+.meal-line { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px; padding: 10px 0; border-top: 1px solid var(--border); }
+.meal-line:first-of-type { border-top: none; }
+.meal-line b { color: var(--accent); font-size: 0.78rem; line-height: 1.2; }
+.meal-line span { color: var(--text); font-size: 0.86rem; }
+em { display: block; margin-top: 2px; color: var(--text-muted); font-style: normal; font-size: 0.82rem; }
+.card p { margin: 8px 0 0; color: var(--text-muted); font-size: 0.86rem; }
+@media (min-width: 900px) {
+  .tracker-top { grid-template-columns: 1fr 1fr; align-items: start; }
+  .tracker-output, .output-box { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
+  .shop-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .plan-list { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
 
-    .nav a {
-      flex: 0 0 auto;
-      min-height: 36px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      border-radius: 999px;
-      padding: 8px 12px;
-      background: rgba(255, 255, 255, 0.05);
-      color: #d9e9f8;
-      text-decoration: none;
-      font-size: 0.84rem;
-      font-weight: 800;
-      white-space: nowrap;
-    }
+@media (max-width: 700px) {
+  .page-header { padding: 12px 14px; }
+  .page-header h1 { font-size: 15px; }
+  .page-header p { font-size: 10.5px; }
+  .app { padding: 12px 10px 40px; }
+  .hero { padding: 16px; }
+  .nav { top: 58px; margin-inline: -10px; padding-inline: 10px; }
+  .timeline-item { grid-template-columns: 82px minmax(0, 1fr); }
+}
 
-    section {
-      margin-top: 20px;
-      scroll-margin-top: 72px;
-    }
+@media (min-width: 900px) {
+  .app { width: min(100%, 1180px); padding: 24px 24px 46px; }
+  .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr); align-items: end; gap: 28px; padding: 24px; }
+  .hero h1 { font-size: clamp(3.4rem, 6vw, 5.4rem); }
+  .hero-actions { justify-content: flex-end; }
+  .progress-card { margin-bottom: 22px; padding: 20px; }
+  .nav { top: 68px; margin: 0 0 26px; padding: 10px; border: 1px solid var(--border); border-radius: 999px; justify-content: center; }
+  .nav a { min-width: 112px; }
+  section { margin-top: 28px; scroll-margin-top: 130px; }
+  .section-title { margin-bottom: 14px; font-size: 1.35rem; }
+  .timeline, .food-grid, .meal-grid, .grocery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .timeline-item { min-height: 96px; }
+  #workouts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  #workouts .section-title { grid-column: 1 / -1; }
+  details.day { margin-bottom: 0; }
+  details.day[open] .day-body { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px; }
+  .category { margin-bottom: 8px; }
+  .exercise { min-height: 142px; }
+  .rule-list, .plan-points { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 
-    .section-title {
-      margin: 0 0 10px;
-      padding: 0 2px;
-      font-size: 1.28rem;
-      letter-spacing: 0;
-    }
+@media (max-width: 360px) {
+  .app { padding-inline: 11px; }
+  .nav { margin-inline: -11px; padding-inline: 11px; }
+  .exercise { grid-template-columns: 30px minmax(0, 1fr); padding: 10px; }
+  .exercise-head { flex-direction: column; align-items: flex-start; }
+  .timeline-item { grid-template-columns: 76px minmax(0, 1fr); padding: 10px; }
+}
 
-    .card,
-    .tracker {
-      padding: 15px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-left: 4px solid var(--cyan);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(21, 30, 43, 0.96), rgba(12, 17, 25, 0.96));
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
-    }
-
-    .card + .card { margin-top: 10px; }
-
-    .card strong,
-    .card span { display: block; }
-
-    .card strong {
-      color: #edf5ff;
-      font-size: 0.98rem;
-    }
-
-    .card span,
-    .card p,
-    .tracker p {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .card p,
-    .tracker p { margin: 6px 0 0; }
-
-    .meal-grid {
-      display: grid;
-      gap: 10px;
-    }
-
-    .meal-card {
-      border-left-color: var(--green);
-    }
-
-    .meal-card:nth-child(2) { border-left-color: var(--yellow); }
-    .meal-card:nth-child(3) { border-left-color: var(--cyan); }
-    .meal-card:nth-child(4) { border-left-color: var(--purple); }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .tag {
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 999px;
-      padding: 5px 9px;
-      color: #ffffff;
-      font-size: 0.72rem;
-      font-weight: 1000;
-      line-height: 1;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.34);
-    }
-
-    .tag.protein { border-color: rgba(48, 217, 128, 0.58); background: rgba(48, 217, 128, 0.2); }
-    .tag.carb { border-color: rgba(255, 216, 90, 0.58); background: rgba(255, 216, 90, 0.18); }
-    .tag.habit { border-color: rgba(32, 213, 242, 0.58); background: rgba(32, 213, 242, 0.2); }
-    .tag.recovery { border-color: rgba(185, 140, 255, 0.58); background: rgba(185, 140, 255, 0.2); }
-    .tag.limit { border-color: rgba(255, 117, 117, 0.58); background: rgba(255, 117, 117, 0.2); }
-
-    .tracker-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .metric {
-      min-width: 82px;
-      border: 1px solid rgba(32, 213, 242, 0.28);
-      border-radius: 14px;
-      padding: 10px;
-      background: rgba(32, 213, 242, 0.08);
-      text-align: center;
-    }
-
-    .metric b {
-      display: block;
-      color: #edf5ff;
-      font-size: 1.45rem;
-      line-height: 1;
-    }
-
-    .metric small {
-      display: block;
-      margin-top: 5px;
-      color: #a8c6d2;
-      font-size: 0.72rem;
-      font-weight: 800;
-    }
-
-    .range-row {
-      margin-top: 14px;
-    }
-
-    .range-label {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      color: #d7e9f7;
-      font-size: 0.86rem;
-      font-weight: 850;
-    }
-
-    input[type="range"] {
-      width: 100%;
-      margin: 12px 0 0;
-      accent-color: var(--cyan);
-    }
-
-    .tracker-output {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .output-box {
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 11px;
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .output-box strong {
-      display: block;
-      color: #edf5ff;
-      font-size: 1.2rem;
-      line-height: 1;
-    }
-
-    .output-box span {
-      display: block;
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 0.76rem;
-      font-weight: 800;
-    }
-
-    .note {
-      border-left-color: var(--yellow);
-    }
-
-    .week-note {
-      border-left-color: var(--green);
-    }
-
-    .shop-grid {
-      display: grid;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .shop-card {
-      border-left-color: var(--purple);
-    }
-
-    .plan-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .day-plan {
-      padding: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-left: 4px solid var(--cyan);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(21, 30, 43, 0.96), rgba(12, 17, 25, 0.96));
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.24);
-    }
-
-    .day-plan h3 {
-      margin: 0 0 10px;
-      color: #edf5ff;
-      font-size: 1rem;
-      letter-spacing: 0;
-    }
-
-    .meal-line {
-      display: grid;
-      grid-template-columns: 82px minmax(0, 1fr);
-      gap: 10px;
-      padding: 9px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.07);
-    }
-
-    .meal-line:first-of-type {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    .meal-line b {
-      color: #dff8ff;
-      font-size: 0.78rem;
-      line-height: 1.3;
-    }
-
-    .meal-line span {
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    .card span em,
-    .card p em,
-    .meal-line em {
-      display: block;
-      margin-top: 3px;
-      color: #c8d7e6;
-      font-style: normal;
-    }
-
-    footer {
-      margin-top: 26px;
-      color: #6f8193;
-      font-size: 0.78rem;
-      text-align: center;
-    }
-
-    .app-version {
-      display: inline-flex;
-      width: fit-content;
-      margin: 8px auto 0;
-      border: 1px solid rgba(32, 213, 242, 0.26);
-      border-radius: 999px;
-      padding: 6px 10px;
-      background: rgba(32, 213, 242, 0.08);
-      color: #baf7ff;
-      font-size: 0.76rem;
-      font-weight: 850;
-    }
   </style>
 </head>
 <body>
+  <div class="page-header">
+    <div class="logo">🥗</div>
+    <div class="header-text">
+      <h1>V-Shape Nutrition Plan</h1>
+      <p>Meal guide, grocery list & body tracker — same Indexy layout</p>
+    </div>
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" type="button" aria-label="Toggle dark mode">
+      <span id="darkIcon">🌙</span> <span id="darkLabel">Dark</span>
+    </button>
+  </div>
   <main class="app">
     <header class="hero">
       <p class="eyebrow">Nutrition</p>
@@ -578,11 +641,158 @@
 
     <footer>
       Nutrition page for V-Shape 100 Body Route
-      <span class="app-version">Version v1.8 · Updated 24 Jun 2026</span>
+      <div class="version-log">
+        <details>
+          <summary>Version Log</summary>
+          <h4>v1.9 - 24 Jun 2026</h4>
+<ul>
+<li>Added a separate desktop interface with wider containers, multi-column schedules, workout cards, and nutrition sections.</li>
+<li>Kept the original compact phone interface for small screens.</li>
+<li>Removed the portrait-only PWA orientation so desktop and wider screens can use the responsive layout naturally.</li>
+</ul>
+<h4>v1.8 - 24 Jun 2026</h4>
+<ul>
+<li>Split AEON grocery and economy rice guide text into separate English and Chinese lines.</li>
+</ul>
+<h4>v1.7 - 24 Jun 2026</h4>
+<ul>
+<li>Updated Monday to Friday lunches to match the real routine: one pulled chicken can day, one tuna can day, two economy rice days, and one family lunch outside.</li>
+<li>Added an economy rice cutting guide for choosing lean protein, half rice, and vegetables.</li>
+<li>Changed Nutrition pill styling to darker high-contrast backgrounds with white text.</li>
+</ul>
+<h4>v1.6 - 24 Jun 2026</h4>
+<ul>
+<li>Split Daily Meals guidance into separate English and Chinese lines.</li>
+<li>Removed sweet potato from the AEON grocery picks and weekly meal plan.</li>
+<li>Updated the fixed 100-day meal base note to allow Korean, Japanese, or Thai flavor rotation.</li>
+</ul>
+<h4>v1.5 - 23 Jun 2026</h4>
+<ul>
+<li>Reworded the Korean flavor note in the fixed 100-day meal base.</li>
+<li>Changed Nutrition tag text to white for better readability.</li>
+</ul>
+<h4>v1.4 - 23 Jun 2026</h4>
+<ul>
+<li>Split every weekly meal plan item into separate English and Chinese lines.</li>
+<li>Improved mobile readability for bilingual meal cards.</li>
+</ul>
+<h4>v1.3 - 23 Jun 2026</h4>
+<ul>
+<li>Changed the weekly meal plan into a fixed 100-day repeatable meal base.</li>
+<li>Removed the &quot;This Week&quot; wording from the Nutrition page.</li>
+<li>Added AEON grocery picks based on myAEON2go shopping categories.</li>
+<li>Added fallback guidance when canned lunch protein is not available.</li>
+</ul>
+<h4>v1.2 - 23 Jun 2026</h4>
+<ul>
+<li>Added a weekly fat-loss meal planner to the standalone Nutrition page.</li>
+<li>Added Monday to Sunday breakfast, lunch, dinner, and optional snack cards.</li>
+<li>Kept Monday to Friday lunches office-friendly with no cooking needed at lunch.</li>
+<li>Limited tuna to one day and pulled chicken to two days for the week.</li>
+</ul>
+<h4>v1.1 - 23 Jun 2026</h4>
+<ul>
+<li>Switched the version style to v1.0, v1.1, v1.2 for future updates.</li>
+<li>Expanded the standalone Nutrition page with bilingual English and Chinese guidance.</li>
+<li>Added breakfast, lunch, dinner, night, and training-day nutrition notes.</li>
+<li>Added a 168 cm body tracker with adjustable weight, BMI, and rough body fat estimate.</li>
+</ul>
+<h4>v1.0.11 - 23 Jun 2026</h4>
+<ul>
+<li>Moved the Nutrition entry out of the main sticky route navigation.</li>
+<li>Added a separate Nutrition Plan shortcut near the top hero area.</li>
+<li>Kept the route navigation focused on Progress, Mon-Fri, Saturday, Sunday, Gym Plan, and Rules.</li>
+</ul>
+<h4>v1.0.10 - 23 Jun 2026</h4>
+<ul>
+<li>Prepared the standalone nutrition page release files.</li>
+<li>Updated the main app footer and service worker version.</li>
+</ul>
+<h4>v1.0.9 - 23 Jun 2026</h4>
+<ul>
+<li>Moved Nutrition out of the main page into a standalone nutrition.html page.</li>
+<li>Updated the main navigation Nutrition link to open nutrition.html in a new tab.</li>
+<li>Added nutrition.html to the service worker cache.</li>
+</ul>
+<h4>v1.0.8 - 23 Jun 2026</h4>
+<ul>
+<li>Replaced Tuesday Scapular Pull + Bandless Rows with no-equipment Prone Y-T-W Raise.</li>
+<li>Removed the old Inverted Row GIF mapping from the Tuesday warm up.</li>
+</ul>
+<h4>v1.0.7 - 23 Jun 2026</h4>
+<ul>
+<li>Added duration labels to Saturday and Sunday route timeline items.</li>
+</ul>
+<h4>v1.0.6 - 23 Jun 2026</h4>
+<ul>
+<li>Added Nutrition navigation tab.</li>
+<li>Added Nutrition section with protein, carb, hydration, and better clothes fit guidance.</li>
+<li>Recommended GitHub repository name: v-shape-100-body-route.</li>
+</ul>
+<h4>v1.0.5 - 23 Jun 2026</h4>
+<ul>
+<li>Renamed the app experience to &quot;V-Shape 100 Body Route&quot;.</li>
+<li>Added duration labels to the Mon-Fri daily route timeline.</li>
+<li>Removed Open GIF / Form buttons from Wednesday swimming cards.</li>
+<li>Added this VERSION_LOG.rdoc file.</li>
+</ul>
+<h4>v1.0.4 - 23 Jun 2026</h4>
+<ul>
+<li>Updated Bird Dog GIF to the 2022 FitnessProgramer source.</li>
+</ul>
+<h4>v1.0.3 - 23 Jun 2026</h4>
+<ul>
+<li>Replaced Plank Breathing with Dead Bug for Sunday recovery.</li>
+<li>Updated Sunday recovery GIF mapping.</li>
+</ul>
+<h4>v1.0.2 - 23 Jun 2026</h4>
+<ul>
+<li>Removed swimming GIF dropdowns.</li>
+<li>Updated Saturday Easy Walk and Chest + Lat Stretch GIF links.</li>
+<li>Changed Sunday recovery to Bird Dog and Dead Bug direction.</li>
+</ul>
+<h4>v1.0.1 - 23 Jun 2026</h4>
+<ul>
+<li>Moved version label to the footer.</li>
+<li>Changed Mon Gym, Tue Gym, Wed Swim, Thu Gym, and Fri Gym chips to white.</li>
+<li>Added recovery GIF dropdowns for Saturday and Sunday.</li>
+</ul>
+<h4>v1.0.0 - 23 Jun 2026</h4>
+<ul>
+<li>First GitHub-ready release.</li>
+<li>Added 100-day progress from 22 Jun 2026.</li>
+<li>Added daily route sections, gym plan, rules, PWA manifest, icons, and GIF dropdown support.</li>
+</ul>
+        </details>
+      </div>
     </footer>
   </main>
 
   <script>
+
+    function setTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      const isDark = theme === "dark";
+      const icon = document.getElementById("darkIcon");
+      const label = document.getElementById("darkLabel");
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (icon) icon.textContent = isDark ? "☀️" : "🌙";
+      if (label) label.textContent = isDark ? "Light" : "Dark";
+      if (meta) meta.setAttribute("content", isDark ? "#0f1117" : "#1c3faa");
+      try { localStorage.setItem("vshape-theme", theme); } catch(e) {}
+    }
+
+    function toggleDark() {
+      const current = document.documentElement.getAttribute("data-theme") || "light";
+      setTheme(current === "dark" ? "light" : "dark");
+    }
+
+    (function initTheme() {
+      let saved = "light";
+      try { saved = localStorage.getItem("vshape-theme") || "light"; } catch(e) {}
+      setTheme(saved === "dark" ? "dark" : "light");
+    })();
+
     const heightM = 1.68;
     const weightRange = document.getElementById("weightRange");
     const weightText = document.getElementById("weightText");

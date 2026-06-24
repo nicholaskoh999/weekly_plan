@@ -1,4 +1,4 @@
-const CACHE_NAME = "vshape-100-v1.8";
+const CACHE_NAME = "vshape-100-v1.9";
 const ASSETS = [
   "./",
   "./index.html",
