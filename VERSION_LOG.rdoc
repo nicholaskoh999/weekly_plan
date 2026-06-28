@@ -1,5 +1,25 @@
 = V-Shape 100 Body Route Version Log
 
+== v2.5.3 - 28 Jun 2026
+
+* Changed the Fuel dashboard meal tile to show short meal window labels instead of full meal-detail text.
+* Uses Breakfast Plan, Lunch Plan, Dinner Plan, and Snack Option with the approved time windows.
+* Kept full meal details inside Weekly Meal Plan and left food choices, quantities, schedule, Body Tracker logic, workout content, and GIF links unchanged.
+* Updated the service worker cache to vshape-100-v2.5.3.
+
+== v2.5.2 - 28 Jun 2026
+
+* Updated the Fuel dashboard meal tile to show the current weekday meal suggestion for the active time window.
+* Uses Breakfast 06:00-10:30, Lunch 10:30-15:00, Dinner 15:00-19:00, and Snack 19:00 onwards.
+* Kept weekly meal plan content, food choices, quantities, Body Tracker logic, and app flow unchanged.
+* Updated the service worker cache to vshape-100-v2.5.2.
+
+== v2.5.1 - 28 Jun 2026
+
+* Updated the Fuel dashboard meal tile to show the current meal window: Breakfast 06:00-10:30, Lunch 10:30-15:00, Dinner 15:00-19:00, or Snack 19:00 onwards.
+* Kept meal plan content, food choices, quantities, Body Tracker logic, and layout unchanged.
+* Updated the service worker cache to vshape-100-v2.5.1.
+
 == v2.5 - 28 Jun 2026
 
 * Polished app-wide wording for clearer section titles, button labels, footer notes, and Fuel terminology.

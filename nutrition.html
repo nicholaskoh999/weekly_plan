@@ -497,6 +497,7 @@ em { display: block; margin-top: 2px; color: var(--text-muted); font-style: norm
   letter-spacing: -0.02em;
 }
 .fuel-stat-tile.accent-tile .fuel-stat-value { color: var(--accent); }
+#fuelTodayMeal { font-size: 0.88rem; line-height: 1.15; white-space: normal; }
 .fuel-stat-label {
   font-size: 9px;
   font-weight: 800;
@@ -848,8 +849,8 @@ em { display: block; margin-top: 2px; color: var(--text-muted); font-style: norm
           </div>
           <div class="fuel-stat-tile">
             <span class="fuel-stat-icon">🍽️</span>
-            <span class="fuel-stat-value" id="fuelTodayMeal">Eggs + Bread</span>
-            <span class="fuel-stat-label">Today's Breakfast</span>
+            <span class="fuel-stat-value" id="fuelTodayMeal">Breakfast Plan</span>
+            <span class="fuel-stat-label" id="fuelMealWindowLabel">Breakfast · 07:30-10:30</span>
           </div>
           <div class="fuel-stat-tile">
             <span class="fuel-stat-icon">🔥</span>
@@ -1251,6 +1252,26 @@ em { display: block; margin-top: 2px; color: var(--text-muted); font-style: norm
       <div class="version-log">
         <details>
           <summary>Version Log</summary>
+<h4>v2.5.3 - 28 Jun 2026</h4>
+<ul>
+<li>Changed the Fuel dashboard meal tile to show short meal window labels instead of full meal-detail text.</li>
+<li>Uses Breakfast Plan, Lunch Plan, Dinner Plan, and Snack Option with the approved time windows.</li>
+<li>Kept full meal details inside Weekly Meal Plan and left food choices, quantities, schedule, Body Tracker logic, workout content, and GIF links unchanged.</li>
+<li>Service worker cache updated to vshape-100-v2.5.3.</li>
+</ul>
+<h4>v2.5.2 - 28 Jun 2026</h4>
+<ul>
+<li>Updated the Fuel dashboard meal tile to show the current weekday meal suggestion for the active time window.</li>
+<li>Uses Breakfast 06:00-10:30, Lunch 10:30-15:00, Dinner 15:00-19:00, and Snack 19:00 onwards.</li>
+<li>Kept weekly meal plan content, food choices, quantities, Body Tracker logic, and app flow unchanged.</li>
+<li>Service worker cache updated to vshape-100-v2.5.2.</li>
+</ul>
+<h4>v2.5.1 - 28 Jun 2026</h4>
+<ul>
+<li>Updated the Fuel dashboard meal tile to show the current meal window: Breakfast 06:00-10:30, Lunch 10:30-15:00, Dinner 15:00-19:00, or Snack 19:00 onwards.</li>
+<li>Kept meal plan content, food choices, quantities, Body Tracker logic, and layout unchanged.</li>
+<li>Service worker cache updated to vshape-100-v2.5.1.</li>
+</ul>
 <h4>v2.5 - 28 Jun 2026</h4>
 <ul>
 <li>Polished app-wide wording for clearer section titles, button labels, footer notes, and Fuel terminology.</li>
@@ -1512,16 +1533,15 @@ em { display: block; margin-top: 2px; color: var(--text-muted); font-style: norm
     const FUEL_TOTAL_DAYS = 100;
     const FUEL_WEEKDAY_NAMES = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
-    // Today breakfast tile by weekday
-    const BREAKFAST_BY_DAY = {
-      0: "Yogurt + Fruit",
-      1: "Eggs + Soy Milk",
-      2: "Eggs + Bread",
-      3: "Yogurt + Banana",
-      4: "Eggs + Coffee",
-      5: "Eggs / Yogurt + Apple",
-      6: "Eggs + Soy Milk"
-    };
+    // Current meal window tile by local time
+    function getCurrentMealWindow(date) {
+      const minutes = date.getHours() * 60 + date.getMinutes();
+      if (minutes >= 450 && minutes < 630) return { title: "Breakfast Plan", label: "Breakfast", time: "07:30-10:30" };
+      if (minutes >= 780 && minutes < 840) return { title: "Lunch Plan", label: "Lunch", time: "13:00-14:00" };
+      if (minutes >= 1080 && minutes < 1155) return { title: "Dinner Plan", label: "Dinner", time: "18:00-19:15" };
+      if (minutes >= 1260) return { title: "Snack Option", label: "Snack", time: "21:00 onwards" };
+      return { title: "Snack Option", label: "Snack", time: "21:00 onwards" };
+    }
 
     // Weekly day collapsible IDs by getDay()
     const DETAIL_IDS = {
@@ -1548,9 +1568,12 @@ em { display: block; margin-top: 2px; color: var(--text-muted); font-style: norm
       const dayEl = document.getElementById("fuelDayNum");
       if (dayEl) dayEl.textContent = day;
 
-      // Today breakfast tile
-      const bfEl = document.getElementById("fuelTodayMeal");
-      if (bfEl) bfEl.textContent = BREAKFAST_BY_DAY[dow] || "Eggs + Bread";
+      // Current meal window tile
+      const mealWindow = getCurrentMealWindow(today);
+      const mealEl = document.getElementById("fuelTodayMeal");
+      const mealLabelEl = document.getElementById("fuelMealWindowLabel");
+      if (mealEl) mealEl.textContent = mealWindow.title;
+      if (mealLabelEl) mealLabelEl.textContent = mealWindow.label + " · " + mealWindow.time;
 
       // Auto-open today's day plan, close others
       Object.values(DETAIL_IDS).forEach(id => {
