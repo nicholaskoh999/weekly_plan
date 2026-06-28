@@ -1,5 +1,92 @@
 = V-Shape 100 Body Route Version Log
 
+== v2.5 - 28 Jun 2026
+
+* Polished app-wide wording for clearer section titles, button labels, footer notes, and Fuel terminology.
+* Renamed visible wording such as Gym Plan to Training, Today's Session to Today Workout, GIF / Form Guide to View GIF / Form Guide, and Nutrition Rules to Fuel Rules where appropriate.
+* Kept workout content, GIF URLs, meal plan content, quantities, Body Tracker logic, layout, CSS behavior, and JavaScript behavior unchanged.
+* Updated the service worker cache to vshape-100-v2.5.
+
+== v2.4.2 - 28 Jun 2026
+
+* Standardized Fuel dashboard and Body Tracker stat tile styling so mixed neon highlight states no longer look inconsistent.
+* Kept all Fuel content, Body Tracker values, and calculation logic unchanged.
+* Updated the service worker cache to vshape-100-v2.4.2.
+
+== v2.4.1 - 28 Jun 2026
+
+* Fixed the Training Today's Session card so it shows the current weekday session from TRAINING_BY_DAY instead of the static Monday default.
+* Updated the service worker cache to vshape-100-v2.4.1.
+
+== v2.4 - 28 Jun 2026
+
+* Cleaned Fuel page wording for easier scanning and consistency.
+* Standardized terms such as low-fat, zero-sugar, 70 g, Greek yogurt, soy milk, whole wheat, and air-fryer wording where appropriate.
+* Kept all food choices, quantities, weekly schedule, office lunch logic, Body Tracker logic, and Fuel UI unchanged.
+* Updated the service worker cache to vshape-100-v2.4.
+
+== v2.3.1 - 28 Jun 2026
+
+* Wrapped Fuel body tracker localStorage read/write in try/catch so the tracker still works when browser storage is blocked.
+* Corrected the Dumbbell Reverse Crunch inline GIF mapping from the reverse-grip incline bench press GIF to FitnessProgramer's Reverse Crunch GIF.
+* Updated the service worker cache to vshape-100-v2.3.1.
+
+== v2.3 - 28 Jun 2026
+
+* Rebuilt Fuel page (nutrition.html) UI layout — Task 4 UI/UX reorganization.
+* Added Fuel Dashboard: weekday label, Day X/100 pill, protein target tile (120-150g), hydration tile (2.5-3L), today's breakfast tile (weekday-aware), and quick-jump buttons (Tracker / Meals / Weekly / Grocery).
+* Body Tracker restyled as three large stat tiles (Weight / BMI / Body Fat) with slider below. All JS logic and localStorage IDs unchanged.
+* Daily Meals restyled as icon-header meal cards with icons per meal time (🍳🥗🍚🌙). All bilingual content unchanged.
+* Weekly Meal Plan: each day (Mon-Sun) wrapped in a collapsible with a 3-word meal preview. Today's day auto-opens on load. All meal-line content unchanged.
+* AEON Grocery Picks split into two collapsibles (Fresh Foods, Chilled + Grocery). Economy Rice Cut Guide and Seasoning Limit each in their own collapsible.
+* Training Day Nutrition and Nutrition Rules each moved into a collapsible. All content unchanged.
+* Legacy hero header and old scroll nav kept in DOM but hidden. Bottom nav Fuel tab active unchanged.
+* Service worker cache updated to vshape-100-v2.3.
+* Daily Routine and Training content in index.html untouched.
+
+== v2.2 - 28 Jun 2026
+
+* Added Today's Workout highlight card at top of Training section — shows session name and duration, computed from current weekday.
+* Added weekly day-chip row (Mon–Sun) — today's chip highlighted in accent; clicking a chip opens that day's collapsible.
+* Today's workout day collapsible auto-opens on load; all other days start closed.
+* Upgraded exercise cards: category dividers as labelled rules, sets/reps as pill badge, full-width solid GIF / Form Guide CTA button per exercise.
+* Gym Plan section collapsed into "About This Plan" collapsible (starts closed, preserves all content).
+* Rules section collapsed into "Training Rules" collapsible (starts closed, preserves all 4 rules).
+* Workout day collapsibles given unique IDs (workout-mon through workout-sun) for JS targeting.
+* All GIF URLs, exercise names, sets/reps, training day structure, and workout program logic unchanged.
+* Daily Routine and Fuel / nutrition.html content untouched.
+* Service worker cache updated to vshape-100-v2.2.
+
+== v2.1 - 28 Jun 2026
+
+* Added Home Dashboard as the primary entry screen.
+* Dashboard shows: V-Shape 100 title, current weekday, Day X / 100 badge, progress bar with percentage, rotating motivation line.
+* Today snapshot row shows today's routine type and today's training session name, computed from the current weekday.
+* Quick action buttons (Routine, Training, Fuel) on the dashboard for one-tap navigation.
+* Improved Daily Routine sections: Mon-Fri, Saturday, Sunday are now collapsible cards with glance strips.
+* Glance strips show key time chips (Wake, Work, Train, Sleep) visible without opening the collapsible.
+* Today's routine collapsible auto-opens on load; the other two stay closed.
+* Day-type badges added to routine section headers: Workday (green), Weekend (yellow), Recovery (red).
+* Bottom nav Home href updated from #progress to #home.
+* Scroll-detection sections array updated to use home instead of progress.
+* Training workout content, GIF links, Fuel/nutrition.html unchanged.
+* Service worker cache updated to vshape-100-v2.1.
+
+== v2.0 - 28 Jun 2026
+
+* Redesigned UI to premium dark fitness app look. Dark mode is now the default.
+* Replaced corporate blue palette with neon yellow-green accent (#C8F135) and near-black backgrounds (#0a0a0a).
+* Replaced old horizontal scroll navigation with a fixed bottom navigation bar (Home, Routine, Training, Fuel).
+* Old horizontal scroll nav hidden via CSS only; HTML kept intact for rollback safety.
+* Compact dark app bar replaces old accent-coloured sticky header on both pages.
+* Progress card, all cards, and buttons restyled with larger border-radius (16px) and new accent colours.
+* Exercise number badges now solid neon yellow-green instead of light blue.
+* Light mode kept as secondary toggle; both pages default to dark mode.
+* nutrition.html receives identical visual style with Fuel tab marked active in bottom nav.
+* Updated service worker cache to vshape-100-v2.0.
+* Updated manifest.webmanifest theme_color and background_color to #0a0a0a.
+* Nutrition content, GIF links, exercise data, meal plans, and localStorage logic unchanged.
+
 == v1.9 - 24 Jun 2026
 
 * Added a separate desktop interface with wider containers, multi-column schedules, workout cards, and nutrition sections.
@@ -113,7 +200,7 @@
 * Changed Mon Gym, Tue Gym, Wed Swim, Thu Gym, and Fri Gym chips to white.
 * Added recovery GIF dropdowns for Saturday and Sunday.
 
-== v1.0.0 - 23 Jun 2026
+== v1.0 - 23 Jun 2026
 
 * First GitHub-ready release.
 * Added 100-day progress from 22 Jun 2026.
