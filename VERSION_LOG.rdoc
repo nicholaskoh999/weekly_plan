@@ -1,5 +1,49 @@
 = V-Shape 100 Body Route Version Log
 
+== v2.7.1 - 30 Jun 2026
+
+* Replaced gifMap with the confirmed FitnessProgramer GIF URL list: updated Lying Chest Press Machine, Lever Shoulder Press, Cable Triceps Pushdown, Cable Crunch / Normal Crunch, Straight Arm Cable Pulldown, and Overhead Dumbbell Triceps Extension to their newly confirmed direct GIF links.
+* Kept the combined Thursday card title "Cable Biceps Curl / Dumbbell Hammer Curl" as a single exercise card, mapped to the Dumbbell Hammer Curl GIF for the inline dropdown, since the card shows one combined exercise with two Form Guide button options.
+* Verified every gifMap key matches an exact h5 title in the document, including both states of the Friday weekly-rotation exercise (Overhead Dumbbell Triceps Extension / Dumbbell Curl).
+* Left all Form Guide button links unchanged since none were flagged as incorrect.
+* Confirmed PLAN_START remains 2026-06-29 and the training plan structure (exercise order, sets, reps, equipment, Chinese descriptions) is unchanged.
+* Updated the service worker cache to vshape-100-v2.7.1.
+
+== v2.7 - 30 Jun 2026
+
+* Updated Monday and Thursday chest/shoulder exercises to match real equipment: "Machine Chest Press" renamed to "Lying Chest Press Machine", "Dumbbell Shoulder Press" renamed to "Lever Shoulder Press" (Monday slot 4), keeping the equipment list to Dumbbells, Lying Chest Press Machine, Lever Shoulder Press, Lat Pulldown Machine, Low Cable Row / Seated Cable Row, and Cable Pulley.
+* Renamed Low Cable Row entries to "Low Cable Row / Seated Cable Row" and Face Pull entries to "Cable Face Pull" for equipment clarity.
+* Added a dual-option Thursday arm exercise, "Cable Biceps Curl / Dumbbell Hammer Curl", with two separate Form Guide links so either equipment choice works.
+* Converted all Chinese exercise detail text (主要训练部位 / 训练目的 / 动作提示) and the four Training Logic sections from Traditional to Simplified Chinese.
+* Converted the remaining Traditional Chinese text in the Mon-Fri / Saturday / Sunday daily routine timelines and the GIF fallback message to Simplified Chinese for full-app consistency.
+* Updated the gifMap keys to match all renamed exercise titles exactly, so inline GIF dropdowns continue to match correctly.
+* Confirmed PLAN_START is set to 2026-06-29 with no remaining hardcoded 2026-06-22 in active code.
+* Updated the About This Plan equipment description to reflect the real equipment list instead of the old ES3000 branding.
+* Updated the service worker cache to vshape-100-v2.7.
+
+== v2.6.1 - 30 Jun 2026
+
+* Fixed inline GIF dropdowns so the GIF image now loads inside the app, not only via the external View GIF / Form Guide button.
+* Changed the GIF-dropdown script to attach to the full .exercise card instead of only .exercise-main, fixing a mismatch that prevented dropdowns from appearing correctly on some cards.
+* Added referrerpolicy="no-referrer" to the inline GIF img tag so FitnessProgramer's hotlink protection does not block the image when loaded from inside the app.
+* Added an explicit load handler so the GIF fallback message only appears if the image truly fails to load, never before.
+* Updated PLAN_START to 29 June 2026 to match the actual start date; updated the matching About This Plan description text.
+* Confirmed the Lat Pulldown GIF link as the reference working URL: https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif.
+* Updated the service worker cache to vshape-100-v2.6.1.
+
+== v2.6 - 30 Jun 2026
+
+* Replaced the Training plan with a new 5-Day Upper Body V-Shape Plan: Mon Push A (Chest/Shoulder/Triceps), Tue Pull A (Back Width/Thickness/Biceps), Wed Shoulder + Abs, Thu Upper Mix, Fri V-Shape Pump.
+* Removed swimming and leg training from the weekly plan; Wednesday is now a full gym day instead of a swim day.
+* Each training day now has 6 exercises targeting roughly a 60-minute session, using Dumbbells, Chest Press Machine, Lat Pulldown Machine, and Seated/Low Cable Row.
+* Added bilingual exercise detail: target muscle, purpose, and form tip are now in Chinese for every exercise, with exercise names kept in English to match FitnessProgramer search terms.
+* Updated all GIF / Form Guide links to verified FitnessProgramer exercise pages for the new exercise list.
+* Added 4 new educational sections under Training Logic: why exercises repeat, why set counts vary (3/4/5 sets), the 1-hour training rule with rest-time guide, and weight selection + progressive overload rule with a worked example.
+* Added a live weekly rotation for Friday's last exercise (Overhead Dumbbell Triceps Extension on odd plan-weeks, Dumbbell Curl on even plan-weeks), calculated automatically from the 22 June 2026 plan start date.
+* Updated the weekly chip row, Today Workout card, and Mon-Fri daily-schedule training tags to match the new plan; removed remaining Wed Swim references from active content.
+* Kept Saturday Rest and Sunday Recovery days, Fuel/nutrition content, Body Tracker logic, and overall app layout unchanged.
+* Updated the service worker cache to vshape-100-v2.6.
+
 == v2.5.3 - 28 Jun 2026
 
 * Changed the Fuel dashboard meal tile to show short meal window labels instead of full meal-detail text.
