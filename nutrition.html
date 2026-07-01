@@ -1367,6 +1367,14 @@ em { display: block; margin-top: 2px; color: var(--text-muted); font-style: norm
       <div class="version-log">
         <details>
           <summary>Version Log</summary>
+<h4>v2.5.5 - 1 Jul 2026</h4>
+<ul>
+<li>Synced Fuel page day count with main app start date.</li>
+<li>Changed FUEL_PLAN_START from 2026-06-22 to 2026-06-29 to match index.html's PLAN_START, fixing the day-count mismatch between Home and Fuel pages.</li>
+<li>Day-count calculation formula unchanged; only the start date constant was corrected.</li>
+<li>Kept meal plan content, calorie target feature, Body Tracker logic, training content, GIF links, and layout unchanged.</li>
+<li>Service worker cache updated to vshape-100-v2.7.3.</li>
+</ul>
 <h4>v2.5.4 - 1 Jul 2026</h4>
 <ul>
 <li>Added Fat Loss Daily Calories Target calculator: Body Weight (kg, default 75) and Manual Adjustment (kcal, default 0) inputs.</li>
@@ -1653,7 +1661,7 @@ em { display: block; margin-top: 2px; color: var(--text-muted); font-style: norm
     })();
 
     // ── Fuel dashboard JS ──
-    const FUEL_PLAN_START = "2026-06-22";
+    const FUEL_PLAN_START = "2026-06-29";
     const FUEL_TOTAL_DAYS = 100;
     const FUEL_WEEKDAY_NAMES = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
