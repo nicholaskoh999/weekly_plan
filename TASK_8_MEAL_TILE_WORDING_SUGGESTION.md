@@ -1,100 +1,68 @@
-# Task 8 Meal Tile Wording Suggestion
+# Task 6.1 Bug Record - Today's Session Wrong Day
 
-## Current Issue
+## Version
 
-The Fuel dashboard meal tile currently shows the full meal text, for example:
+- Before fix: v2.4
+- After fix: v2.4.1
+- Date: 28 Jun 2026
 
-> Air-fryer chicken breast + broccoli + 70 g raw rice, then prep extra chicken for office lunches.
+## Problem
 
-This is accurate, but it is too long for a small dashboard tile. It wraps into multiple lines and makes the dashboard feel crowded.
+On Sunday, the Training section's **Today's Session** card showed:
 
-## Recommended Direction
+- Chest + Shoulder
+- 45-60 min - Gym
 
-Use a short meal title in the dashboard tile, and keep the full meal details inside the Weekly Meal Plan section.
+This was wrong because **Chest + Shoulder is the Monday workout**. Sunday should show:
 
-Dashboard tile should answer quickly:
+- Recovery
+- 15-30 min - mobility & stretch
 
-- What meal window is it now?
-- What should I generally eat now?
-- Where can I see the full detail if needed?
+The Sunday chip and Sunday workout card were already correct. Only the top Today's Session card was wrong.
 
-## Best Option
+## Cause
 
-Use short labels like this:
+The Today's Session card in `index.html` had static default HTML text:
 
-| Meal window | Dashboard title | Sub label | Full detail stays in Weekly Plan |
-|---|---|---|---|
-| Breakfast | Breakfast Plan | Breakfast · 06:00-10:30 | Actual breakfast text by weekday |
-| Lunch | Lunch Plan | Lunch · 10:30-15:00 | Actual lunch text by weekday |
-| Dinner | Dinner Plan | Dinner · 15:00-19:00 | Actual dinner text by weekday |
-| Snack | Snack Option | Snack · 19:00 onwards | Actual snack text by weekday |
+- `todayWorkoutName` defaulted to `Chest + Shoulder`
+- `todayWorkoutSub` defaulted to `45-60 min - Gym`
 
-For the selected example, instead of showing:
+The existing JavaScript already had correct weekday data in `TRAINING_BY_DAY`, but `updateDashboard()` only updated the Home dashboard snapshot. It did not update the Training section's Today's Session card text.
 
-> Air-fryer chicken breast + broccoli + 70 g raw rice, then prep extra chicken for office lunches.
+## Fix
 
-use:
+Updated `updateDashboard()` in `index.html` so it also writes the current day's training data into:
 
-> Dinner Plan
-> Dinner · 15:00-19:00
+- `#todayWorkoutName`
+- `#todayWorkoutSub`
 
-## Alternative Options
+Now the card uses the same `TRAINING_BY_DAY` source as the rest of the app.
 
-### Option A - Short Meal Type
+## Files Changed
 
-- Breakfast Plan
-- Lunch Plan
-- Dinner Plan
-- Snack Option
+- `index.html`
+- `sw.js`
+- `VERSION_LOG.rdoc`
+- `nutrition.html` visible version log only
 
-Pros: cleanest and fits the dashboard best.  
-Cons: user needs to scroll to Weekly Plan for exact food.
+## Version / Cache Update
 
-### Option B - Short Food Summary
+Because `index.html` changed and the app is a PWA, the cache was bumped:
 
-Examples:
+- From: `vshape-100-v2.4`
+- To: `vshape-100-v2.4.1`
 
-- Chicken Rice Prep
-- Economy Rice Cut
-- Tuna Sandwich
-- Yogurt + Fruit
-- Chicken Wrap
+Version logs were updated to include `v2.4.1`.
 
-Pros: more specific than Option A.  
-Cons: needs a custom short title for every day and meal.
+## What To Test
 
-### Option C - Keep Full Food Text
+1. Open `index.html` on Sunday.
+2. Scroll to Training.
+3. Confirm Today's Session shows `Recovery`.
+4. Confirm the Sunday chip is active.
+5. Confirm the Sunday workout card opens.
+6. Check another weekday later to confirm the card follows that day's workout.
 
-Keep the current full meal sentence in the dashboard.
+## Notes
 
-Pros: shows exact food immediately.  
-Cons: too long for the tile and visually crowded.
-
-## Recommended Implementation
-
-Use Option A now:
-
-- Dashboard title: `Breakfast Plan`, `Lunch Plan`, `Dinner Plan`, or `Snack Option`
-- Dashboard sub label: meal window time
-- Weekly Meal Plan remains the source for full details
-
-## Suggested Future Enhancement
-
-If more specificity is wanted later, use Option B and add a separate short-title map, while keeping full meal text unchanged in Weekly Meal Plan.
-
-## Do Not Change
-
-- Do not change meal choices
-- Do not change quantities
-- Do not change Monday-Sunday schedule
-- Do not change Body Tracker logic
-- Do not change weekly meal details
-
-## My Recommendation
-
-Change the dashboard tile to short meal window labels. For the current selected tile, use:
-
-> Dinner Plan
-> Dinner · 15:00-19:00
-
-This keeps the dashboard clean while preserving the full meal detail below.
+No workout plan content was changed. The fix only corrected the display logic for the Today's Session card.
